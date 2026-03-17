@@ -1,0 +1,66 @@
+{
+  "program_name": "K-12 Career Readiness Platform",
+  "mission": "Transforming education by integrating vocational training into K-12 curriculum, preparing students for successful careers.",
+  "educational_levels": [
+    {
+      "level": "Elementary school",
+      "grades": "K-5",
+      "curriculum_highlights": [
+        "Introduction to creative arts and crafts",
+        "Basic digital literacy and computer skills",
+        "Hands-on STEM activities",
+        "Introduction to trades through play"
+      ]
+    },
+    {
+      "level": "Middle School",
+      "grades": "6-8",
+      "curriculum_highlights": [
+        "Programming and web development basics",
+        "Introduction to robotics and engineering",
+        "Digital media and graphic design",
+        "Career exploration workshops"
+      ]
+    },
+    {
+      "level": "High School",
+      "grades": "9-12",
+      "curriculum_highlights": [
+        "Advanced technical certifications",
+        "Industry internships and apprenticeships",
+        "Specialized trade programs",
+        "College and career pathway planning"
+      ]
+    }
+  ],
+  "program_benefits": [
+    {
+      "title": "Career Clarity",
+      "description": "Students discover their interests and strengths early, making informed decisions about their future."
+    },
+    {
+      "title": "Industry Partnerships",
+      "description": "Direct connections with local businesses provide mentorship and real-world learning opportunities."
+    },
+    {
+      "title": "Higher Engagement",
+      "description": "Hands-on learning increases student motivation and attendance rates significantly."
+    },
+    {
+      "title": "Certified Skill",
+      "description": "Students earn industry-recognized certifications before graduating high school."
+    },
+    {
+      "title": "Life Readiness",
+      "description": "Develop essential soft skills like teamwork, communication, and problem-solving."
+    },
+    {
+      "title": "Innovation Focus",
+      "description": "Foster creativity and critical thinking through project-based learning experiences."
+    }
+  ],
+  "contact_info": {
+    "email": "xyz@gmail.com"
+  }
+}
+

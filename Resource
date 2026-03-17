@@ -1,0 +1,8 @@
+  /* primay :  */
+/* EAF0F6 */
+/* teertiary color:F1EFEC */
+
+/* font-family: 'Open Sans', sans-serif; */
+
+/* heading-secondary:010e1c */
+
