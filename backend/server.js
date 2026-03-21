@@ -1,7 +1,5 @@
-
-
 const express = require('express');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const Groq = require('groq-sdk');
 const fs = require('fs');
 const cors = require('cors');
 require('dotenv').config();
@@ -10,36 +8,37 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// --- THE FIX IS HERE ---
-let knowledgeBase = {}; // Declare it first!
-
+let knowledgeBase = {};
 try {
-    // Make sure 'knowledge.json' is in the SAME folder as 'server.js'
     const rawData = fs.readFileSync('./knowledge.json', 'utf8');
     knowledgeBase = JSON.parse(rawData);
     console.log("✅ Knowledge base loaded.");
 } catch (err) {
     console.error("❌ Error loading knowledge.json:", err.message);
-    // Provide a fallback so the AI doesn't crash if the file is missing
     knowledgeBase = { info: "No data available." };
 }
-// ------------------------
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const client = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 app.post('/api/chat', async (req, res) => {
     try {
         const { userMessage } = req.body;
         console.log("1. Received from frontend:", userMessage);
 
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });        
+        const response = await client.chat.completions.create({
+            model: "llama-3.1-8b-instant", // Free, fast
+            messages: [
+                { 
+                    role: "system", 
+                    content: `You are a helpful assistant. Use this knowledge base to answer: ${JSON.stringify(knowledgeBase)}` 
+                },
+                { role: "user", content: userMessage }
+            ],
+        });
 
-        // Now 'knowledgeBase' is defined and safe to use!
-        const prompt = `Context: ${JSON.stringify(knowledgeBase)}. User: ${userMessage}`;
-
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        res.json({ reply: response.text() });
+        const reply = response.choices[0].message.content;
+        console.log("2. Sending reply:", reply);
+        res.json({ reply });
 
     } catch (error) {
         console.error("❌ SERVER CRASH ERROR:", error.message);
