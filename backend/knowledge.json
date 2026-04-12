@@ -1,66 +1,236 @@
 {
-  "program_name": "K-12 Career Readiness Platform",
-  "mission": "Transforming education by integrating vocational training into K-12 curriculum, preparing students for successful careers.",
   "educational_levels": [
     {
-      "level": "Elementary school",
-      "grades": "K-5",
-      "curriculum_highlights": [
-        "Introduction to creative arts and crafts",
-        "Basic digital literacy and computer skills",
-        "Hands-on STEM activities",
-        "Introduction to trades through play"
+      "level": "Elementary",
+      "grade_range": "K-5",
+      "focus": [
+        "Creativity",
+        "Basic Skills"
+      ],
+      "programs": [
+        {
+          "name": "Intro to Coding",
+          "skills": [
+            "Logic",
+            "Problem Solving"
+          ],
+          "tools": [
+            "Scratch"
+          ],
+          "duration": "3 months",
+          "difficulty": "Beginner",
+          "projects": [
+            "Simple games",
+            "Animations"
+          ]
+        }
       ]
     },
     {
-      "level": "Middle School",
-      "grades": "6-8",
-      "curriculum_highlights": [
-        "Programming and web development basics",
-        "Introduction to robotics and engineering",
-        "Digital media and graphic design",
-        "Career exploration workshops"
+      "level": "Middle",
+      "grade_range": "6-8",
+      "focus": [
+        "Exploration",
+        "Technical Basics"
+      ],
+      "programs": [
+        {
+          "name": "Web Basics",
+          "skills": [
+            "HTML",
+            "CSS"
+          ],
+          "tools": [
+            "VS Code"
+          ],
+          "duration": "4 months",
+          "difficulty": "Beginner",
+          "projects": [
+            "Portfolio page",
+            "Basic website"
+          ]
+        }
       ]
     },
     {
-      "level": "High School",
-      "grades": "9-12",
-      "curriculum_highlights": [
-        "Advanced technical certifications",
-        "Industry internships and apprenticeships",
-        "Specialized trade programs",
-        "College and career pathway planning"
+      "level": "High",
+      "grade_range": "9-12",
+      "focus": [
+        "Career Preparation",
+        "Specialization"
+      ],
+      "programs": [
+        {
+          "name": "Full Stack Development",
+          "skills": [
+            "JavaScript",
+            "Node.js",
+            "MongoDB"
+          ],
+          "tools": [
+            "VS Code",
+            "Git",
+            "Postman"
+          ],
+          "duration": "6 months",
+          "difficulty": "Intermediate",
+          "projects": [
+            "Chat App",
+            "E-commerce site"
+          ]
+        }
       ]
+    }
+  ],
+  "career_paths": [
+    {
+      "field": "Software Development",
+      "related_skills": [
+        "coding",
+        "programming",
+        "javascript"
+      ],
+      "roles": [
+        "Web Developer",
+        "Software Engineer"
+      ],
+      "required_skills": [
+        "DSA",
+        "Web Dev",
+        "Problem Solving"
+      ],
+      "tools": [
+        "VS Code",
+        "Git",
+        "Docker"
+      ],
+      "salary_range": "₹4L - ₹12L per year",
+      "growth": "High demand globally",
+      "recommended_programs": [
+        "Full Stack Development"
+      ],
+      "learning_path": [
+        "Learn HTML, CSS",
+        "Learn JavaScript",
+        "Build Projects",
+        "Learn Backend (Node.js)",
+        "Apply for internships"
+      ]
+    },
+    {
+      "field": "UI/UX Design",
+      "related_skills": [
+        "design",
+        "ui",
+        "ux",
+        "graphics"
+      ],
+      "roles": [
+        "UI Designer",
+        "UX Researcher"
+      ],
+      "required_skills": [
+        "Figma",
+        "Creativity",
+        "User Research"
+      ],
+      "tools": [
+        "Figma",
+        "Adobe XD"
+      ],
+      "salary_range": "₹3L - ₹10L per year",
+      "growth": "Growing rapidly",
+      "recommended_programs": [
+        "Design Basics"
+      ],
+      "learning_path": [
+        "Learn design principles",
+        "Use Figma",
+        "Create mockups",
+        "Build portfolio",
+        "Apply for internships"
+      ]
+    },
+    {
+      "field": "Data Science",
+      "related_skills": [
+        "data",
+        "analysis",
+        "python",
+        "machine learning"
+      ],
+      "roles": [
+        "Data Analyst",
+        "ML Engineer"
+      ],
+      "required_skills": [
+        "Python",
+        "Statistics",
+        "ML"
+      ],
+      "tools": [
+        "Python",
+        "Pandas",
+        "Jupyter"
+      ],
+      "salary_range": "₹6L - ₹20L per year",
+      "growth": "Very high demand",
+      "recommended_programs": [
+        "Data Science Bootcamp"
+      ],
+      "learning_path": [
+        "Learn Python",
+        "Learn Data Analysis",
+        "Learn Machine Learning",
+        "Build projects",
+        "Participate in competitions"
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "name": "Full Stack Bootcamp",
+      "duration": "6 months",
+      "level": "Intermediate",
+      "skills": [
+        "Frontend",
+        "Backend"
+      ],
+      "certificate": true
+    },
+    {
+      "name": "UI/UX Mastery",
+      "duration": "4 months",
+      "level": "Beginner",
+      "skills": [
+        "Design",
+        "Prototyping"
+      ],
+      "certificate": true
     }
   ],
   "program_benefits": [
     {
-      "title": "Career Clarity",
-      "description": "Students discover their interests and strengths early, making informed decisions about their future."
+      "title": "Skill Development",
+      "description": "Students gain practical, job-ready skills."
     },
     {
-      "title": "Industry Partnerships",
-      "description": "Direct connections with local businesses provide mentorship and real-world learning opportunities."
+      "title": "Career Readiness",
+      "description": "Prepares students for real-world jobs."
     },
     {
-      "title": "Higher Engagement",
-      "description": "Hands-on learning increases student motivation and attendance rates significantly."
-    },
-    {
-      "title": "Certified Skill",
-      "description": "Students earn industry-recognized certifications before graduating high school."
-    },
-    {
-      "title": "Life Readiness",
-      "description": "Develop essential soft skills like teamwork, communication, and problem-solving."
-    },
-    {
-      "title": "Innovation Focus",
-      "description": "Foster creativity and critical thinking through project-based learning experiences."
+      "title": "Hands-on Learning",
+      "description": "Focus on real-world projects and experience."
     }
   ],
-  "contact_info": {
-    "email": "xyz@gmail.com"
-  }
+  "faq": [
+    {
+      "question": "What is vocational training?",
+      "answer": "It focuses on practical skills for specific careers."
+    },
+    {
+      "question": "Do I get a certificate?",
+      "answer": "Yes, most programs provide certification."
+    }
+  ]
 }
-
