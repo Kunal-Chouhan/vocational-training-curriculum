@@ -214,7 +214,7 @@ async function signup() {
 async function login() {
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
-  
+  console.log("helo")
   const res = await fetch('http://localhost:5000/api/login', {
     method: 'POST',
     headers: {

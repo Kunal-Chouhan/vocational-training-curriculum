@@ -4,13 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  </html><input type="text" id="name" placeholder="Name">
+<body style="display: flex; text-align: center; justify-content: center;">
+  <!-- </html><input type="text" id="name" placeholder="Name">
   <input type="email" id="email" placeholder="Email">
   <input type="password" id="password" placeholder="Password">
   <button onclick="signup()">Signup</button>
-  
+   -->
 
-  <script src="script.js"></script>
+
+   <div class="login-container">
+    <div class="login-card">
+      <h2>Create Account</h2>
+      <p>Start your vocational training journey</p>
+      
+      <div class="input-group">
+        <input type="text" id="name" placeholder="Full Name" required>
+      </div>
+      
+      <div class="input-group">
+        <input type="email" id="email" placeholder="Email Address" required>
+      </div>
+      
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Create Password" required>
+      </div>
+      
+      <button class="login-btn" onclick="signup()">Signup</button>
+      
+      <div class="footer-links">
+        <span>Already have an account? <a href="login.html">Login</a></span>
+      </div>
+    </div>
+  </div>
+  <script src="./script.js"></script>
 </body>
