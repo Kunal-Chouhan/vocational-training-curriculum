@@ -59,7 +59,9 @@ app.post('/api/login', async (req, res) => {
     if (!isMatch) return res.json({ error: "Invalid password" });
 
     const token = jwt.sign(
-      { userId: user._id },
+      { userId: user._id,
+        name: user.name
+       },
       "SECRET_KEY",
       { expiresIn: "1d" }
     );
