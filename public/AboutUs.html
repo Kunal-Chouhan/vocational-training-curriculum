@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — VocaLearn</title>
+  <link rel="stylesheet" href="s">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0e0e0e;
+      --paper: #f5f0e8;
+      --cream: #ede8db;
+      --amber: #d4820a;
+      --rust: #b84c1e;
+      --sage: #4a6741;
+      --steel: #2c4a6e;
+      --muted: #7a7265;
+      --light-line: rgba(14,14,14,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.4rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(245, 240, 232, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-line);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--amber); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active { color: var(--amber); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 3rem 6rem 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--rust);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--ink);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      transition: background 0.25s, color 0.25s;
+      width: fit-content;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.65s forwards;
+    }
+
+    .hero-cta:hover {
+      background: var(--amber);
+      border-color: var(--amber);
+    }
+
+    .hero-cta svg { transition: transform 0.25s; }
+    .hero-cta:hover svg { transform: translateX(4px); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(135deg, transparent 40%, rgba(212,130,10,0.08) 100%),
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 30px,
+          rgba(14,14,14,0.025) 30px,
+          rgba(14,14,14,0.025) 31px
+        );
+    }
+
+    .hero-illustration {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .floating-cards {
+      position: relative;
+      width: 340px;
+      height: 380px;
+    }
+
+    .f-card {
+      position: absolute;
+      background: var(--paper);
+      border: 1px solid var(--light-line);
+      padding: 1.4rem 1.6rem;
+      box-shadow: 0 8px 32px rgba(14,14,14,0.1);
+      opacity: 0;
+      animation: cardFloat 0.8s ease forwards;
+    }
+
+    .f-card:nth-child(1) { top: 0; left: 0; width: 200px; animation-delay: 0.8s; }
+    .f-card:nth-child(2) { top: 60px; right: 0; width: 180px; animation-delay: 1s; }
+    .f-card:nth-child(3) { bottom: 40px; left: 20px; width: 220px; animation-delay: 1.2s; }
+
+    .f-card-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+
+    .f-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .f-card-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--rust);
+      margin-top: 0.5rem;
+    }
+
+    .hero-big-number {
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 16rem;
+      font-weight: 900;
+      color: var(--ink);
+      opacity: 0.04;
+      line-height: 1;
+      z-index: 0;
+      user-select: none;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--light-line);
+      margin: 0 3rem;
+    }
+
+    /* ── MISSION STRIP ── */
+    .mission-strip {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .ms-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .ms-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .ms-text strong {
+      font-style: normal;
+      color: var(--amber);
+    }
+
+    /* ── STATS ── */
+    .stats {
+      padding: 6rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .stat-item {
+      padding: 3rem 2rem;
+      border-right: 1px solid var(--light-line);
+      border-bottom: 1px solid var(--light-line);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .stat-item:first-child { border-left: 1px solid var(--light-line); }
+    .stat-item.visible { opacity: 1; transform: translateY(0); }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-num span { color: var(--amber); }
+
+    .stat-label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── WHO WE ARE ── */
+    .who {
+      padding: 8rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+      background: var(--cream);
+    }
+
+    .section-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--rust); }
+
+    .body-text {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+
+    .who-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding-top: 4rem;
+    }
+
+    .pillar {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: var(--paper);
+      border: 1px solid var(--light-line);
+      transition: border-color 0.25s, transform 0.25s;
+      cursor: default;
+    }
+
+    .pillar:hover {
+      border-color: var(--amber);
+      transform: translateX(6px);
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .pillar-content h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .pillar-content p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── TEAM ── */
+    .team {
+      padding: 8rem 3rem;
+    }
+
+    .team-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .team-card {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .team-card.visible { opacity: 1; transform: translateY(0); }
+    .team-card:nth-child(2) { transition-delay: 0.15s; }
+    .team-card:nth-child(3) { transition-delay: 0.3s; }
+
+    .tc-avatar {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--light-line);
+    }
+
+    .tc-avatar-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tc-initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(14,14,14,0.12);
+    }
+
+    .tc-color-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+    }
+
+    .tc-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .tc-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.8rem;
+    }
+
+    .tc-bio {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── VALUES ── */
+    .values {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 8rem 3rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 4rem;
+    }
+
+    .value-item {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid rgba(245,240,232,0.1);
+      border-bottom: 1px solid rgba(245,240,232,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .value-item.visible { opacity: 1; transform: translateY(0); }
+    .value-item:nth-child(1) { transition-delay: 0s; }
+    .value-item:nth-child(2) { transition-delay: 0.1s; }
+    .value-item:nth-child(3) { transition-delay: 0.2s; }
+    .value-item:nth-child(4) { transition-delay: 0.3s; }
+    .value-item:nth-child(5) { transition-delay: 0.4s; }
+    .value-item:nth-child(6) { transition-delay: 0.5s; }
+    .value-item:nth-child(3), .value-item:nth-child(6) { border-right: none; }
+
+    .value-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--amber);
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+    }
+
+    .value-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .value-desc {
+      font-size: 0.88rem;
+      color: rgba(245,240,232,0.55);
+      line-height: 1.75;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      padding: 8rem 3rem;
+      background: var(--cream);
+    }
+
+    .tl-line {
+      position: relative;
+      margin-top: 4rem;
+      padding-left: 3rem;
+    }
+
+    .tl-line::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: var(--light-line);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .tl-item.visible { opacity: 1; transform: translateX(0); }
+    .tl-item:nth-child(2) { transition-delay: 0.15s; }
+    .tl-item:nth-child(3) { transition-delay: 0.3s; }
+    .tl-item:nth-child(4) { transition-delay: 0.45s; }
+
+    .tl-dot {
+      position: absolute;
+      left: -3.4rem;
+      top: 6px;
+      width: 10px; height: 10px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+
+    .tl-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .tl-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .tl-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      padding: 7rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+      border-top: 1px solid var(--light-line);
+    }
+
+    .cta-banner-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+
+    .cta-banner-title em { font-style: italic; color: var(--amber); }
+
+    .cta-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--ink);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      transition: background 0.25s, color 0.25s;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover { background: var(--amber); border-color: var(--amber); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: transparent;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border: 2px solid var(--light-line);
+      transition: border-color 0.25s;
+      white-space: nowrap;
+    }
+
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(245,240,232,0.5);
+      padding: 2.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      color: var(--paper);
+      font-size: 1rem;
+    }
+
+    .footer-logo span { color: var(--amber); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardFloat {
+      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(30px); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 5rem 1.5rem 4rem; }
+      .mission-strip { grid-template-columns: 1fr; gap: 1.5rem; padding: 3rem 1.5rem; }
+      .stats { grid-template-columns: repeat(2, 1fr); padding: 3rem 1.5rem; }
+      .stat-item:nth-child(1) { border-left: 1px solid var(--light-line); }
+      .who { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+      .team { padding: 5rem 1.5rem; }
+      .team-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .team-grid { grid-template-columns: 1fr; }
+      .values { padding: 5rem 1.5rem; }
+      .values-grid { grid-template-columns: 1fr; }
+      .value-item { border-right: none; }
+      .timeline { padding: 5rem 1.5rem; }
+      .cta-banner { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <!-- <nav>
+    <a href="#" class="nav-logo">Voca<span>Learn</span></a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#" class="active">About</a></li>
+      <li><a href="#">Programs</a></li>
+      <li><a href="#">Partners</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav> -->
+
+  <!-- header -->
+
+  <header class="header">  
+    <div class="navbar">
+    <a href="#" class="logo">
+      <img src="/img/header-logo.svg" alt="Web logo" width="100", height="65" >
+    </a>
+    <ul class="nav-links">
+      <a href="dashboard.html" onclick="showSection('program')"><li class="nav-para">Programs</li></a>
+      <a href=""><li class="nav-para">Career Tracks</li></a>
+      <a href=""><li class="nav-para">Benefits</li></a>
+      <a href="AboutUs.html"><li class="nav-para">About Us</li></a>
+      <a href=""><li class="nav-para">Resources</li></a>
+    </ul>
+    <div class="authentication">
+    <a id="loginID" class="login" href="login.html">Log in</a>
+    <a id="signupID"  href="signup.html"><button class="Signup-btn">Get Started</button></a>
+    <button id="logoutBtn" style="display: none;">Logout</button>
+    
+      </div>
+    </div>
+   </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">About VocaLearn Initiative</p>
+      <h1 class="hero-title">
+        Bridging <em>classrooms</em><br>& industries
+      </h1>
+      <p class="hero-desc">
+        We integrate industry-relevant vocational training into elementary and secondary education — building skills that matter before students ever step into the workforce.
+      </p>
+      <a href="#mission" class="hero-cta">
+        Explore Our Mission
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-illustration">
+        <div class="floating-cards">
+          <div class="f-card">
+            <div class="f-card-tag">Students Reached</div>
+            <div class="f-card-title">Hands-on Learning</div>
+            <div class="f-card-num" id="counter1">0</div>
+          </div>
+          <div class="f-card">
+            <div class="f-card-tag">Industry Partners</div>
+            <div class="f-card-title">Real Mentors</div>
+            <div class="f-card-num" id="counter2">0</div>
+          </div>
+          <div class="f-card">
+            <div class="f-card-tag">Trade Tracks</div>
+            <div class="f-card-title">Career Pathways</div>
+            <div class="f-card-num" id="counter3">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-big-number">V</div>
+    </div>
+  </section>
+
+  <!-- MISSION STRIP -->
+  <section class="mission-strip" id="mission">
+    <div class="ms-label">Our Mission</div>
+    <p class="ms-text">
+      To <strong>transform K–12 education</strong> by embedding practical, industry-aligned vocational skills alongside academic learning — preparing every student for a life of meaningful contribution.
+    </p>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stat-item">
+      <div class="stat-num"><span>12</span>K+</div>
+      <div class="stat-label">Students Enrolled</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>85</span>+</div>
+      <div class="stat-label">Industry Partners</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>24</span></div>
+      <div class="stat-label">Vocational Tracks</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>6</span></div>
+      <div class="stat-label">States Covered</div>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section class="who">
+    <div class="who-left">
+      <p class="section-eyebrow">Who We Are</p>
+      <h2 class="section-title">Education that <em>works</em> for the real world</h2>
+      <p class="body-text">
+        VocaLearn is a nonprofit initiative founded by educators, industry professionals, and policy advocates who believe that vocational training should begin early — not as an afterthought, but as a core component of every child's education.
+      </p>
+      <p class="body-text">
+        We partner directly with schools, industries, and governments to design curricula that integrate technical skills, career awareness, and hands-on experience from elementary through secondary education.
+      </p>
+    </div>
+    <div class="who-right">
+      <div class="pillar">
+        <div class="pillar-icon">🏗️</div>
+        <div class="pillar-content">
+          <h4>Curriculum Integration</h4>
+          <p>Vocational modules embedded directly into the existing school schedule — no disruption, maximum impact.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🤝</div>
+        <div class="pillar-content">
+          <h4>Industry Mentorship</h4>
+          <p>Real professionals visit classrooms, lead workshops, and guide students on actual career paths.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">📐</div>
+        <div class="pillar-content">
+          <h4>Skill Certification</h4>
+          <p>Students earn industry-recognized micro-credentials alongside their academic qualifications.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🌱</div>
+        <div class="pillar-content">
+          <h4>Early Exposure</h4>
+          <p>Career awareness starts at the elementary level — building curiosity, confidence, and direction from day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team">
+    <div class="team-header">
+      <div>
+        <p class="section-eyebrow">The People Behind It</p>
+        <h2 class="section-title">Our <em>Core</em> Team</h2>
+      </div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="tc-avatar">
+          <div class="tc-avatar-inner">
+            <span class="tc-initials">DR</span>
+          </div>
+          <div class="tc-color-bar" style="background: var(--amber);"></div>
+        </div>
+        <div class="tc-role">Founder & Director</div>
+        <div class="tc-name">Dr. Ramesh Agarwal</div>
+        <p class="tc-bio">Former IIT professor and education policy advisor with 20 years of experience designing STEM and vocational curricula for public schools across India.</p>
+      </div>
+      <div class="team-card">
+        <div class="tc-avatar">
+          <div class="tc-avatar-inner">
+            <span class="tc-initials">PV</span>
+          </div>
+          <div class="tc-color-bar" style="background: var(--rust);"></div>
+        </div>
+        <div class="tc-role">Head of Partnerships</div>
+        <div class="tc-name">Priya Venkatesh</div>
+        <p class="tc-bio">Industry liaison with a background in manufacturing and HR, Priya has built a network of 85+ companies committed to sponsoring vocational education programs.</p>
+      </div>
+      <div class="team-card">
+        <div class="tc-avatar">
+          <div class="tc-avatar-inner">
+            <span class="tc-initials">AS</span>
+          </div>
+          <div class="tc-color-bar" style="background: var(--sage);"></div>
+        </div>
+        <div class="tc-role">Curriculum Designer</div>
+        <div class="tc-name">Arjun Sharma</div>
+        <p class="tc-bio">A secondary school teacher turned curriculum architect, Arjun specializes in making complex vocational concepts accessible and exciting for children aged 8–16.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values">
+    <p class="section-eyebrow" style="color: var(--amber);">What We Stand For</p>
+    <h2 class="section-title" style="color: var(--paper);">Our Core <em>Values</em></h2>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-num">01</div>
+        <div class="value-name">Equity in Access</div>
+        <p class="value-desc">Every child, regardless of background or geography, deserves access to quality vocational education that opens doors.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-num">02</div>
+        <div class="value-name">Industry Relevance</div>
+        <p class="value-desc">Our curricula are co-designed with real industries, ensuring skills taught today remain valuable in tomorrow's economy.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-num">03</div>
+        <div class="value-name">Hands-on Learning</div>
+        <p class="value-desc">We believe deeply in learning by doing. Workshops, labs, and projects are at the heart of everything we teach.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-num">04</div>
+        <div class="value-name">Academic Balance</div>
+        <p class="value-desc">Vocational training complements — never replaces — academic rigor. Both paths strengthen one another.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-num">05</div>
+        <div class="value-name">Teacher Empowerment</div>
+        <p class="value-desc">We invest deeply in training educators so they can deliver vocational content with confidence and creativity.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-num">06</div>
+        <div class="value-name">Community Impact</div>
+        <p class="value-desc">When students develop skills that serve local industries, entire communities grow stronger together.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline">
+    <p class="section-eyebrow">How We Got Here</p>
+    <h2 class="section-title">Our <em>Journey</em></h2>
+    <div class="tl-line">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2018 — Founded</div>
+        <div class="tl-heading">The Idea Takes Root</div>
+        <p class="tl-desc">Three educators frustrated by the gap between school curricula and workplace needs came together to draft the first VocaLearn blueprint in Madhya Pradesh.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2019 — Pilot Phase</div>
+        <div class="tl-heading">First 12 Schools Onboarded</div>
+        <p class="tl-desc">We piloted our program across 12 government secondary schools, reaching 1,400 students with introductory vocational modules in trades, agriculture, and technology.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2021 — Expansion</div>
+        <div class="tl-heading">Elementary Integration Begins</div>
+        <p class="tl-desc">Encouraged by pilot results, we expanded our reach to elementary schools and developed age-appropriate career exploration modules for students as young as 8.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2024 — Present</div>
+        <div class="tl-heading">National Recognition</div>
+        <p class="tl-desc">Operating across 6 states with 12,000+ students enrolled, 85+ industry partners, and a government memorandum of understanding for national scaling by 2026.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div>
+      <h2 class="cta-banner-title">
+        Ready to bring<br>vocational learning<br>to <em>your school?</em>
+      </h2>
+    </div>
+    <div class="cta-btn-group">
+      <a href="#" class="btn-primary">
+        Partner With Us
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#" class="btn-ghost">Download Brochure</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Voca<span>Learn</span></div>
+    <div>© 2024 VocaLearn Initiative. All rights reserved.</div>
+    <div>Empowering students, one skill at a time.</div>
+  </footer>
+
+  <script>
+    // ── INTERSECTION OBSERVER for scroll animations ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.stat-item, .team-card, .value-item, .tl-item').forEach(el => observer.observe(el));
+
+    // ── COUNTER ANIMATION ──
+    function animateCounter(el, target, suffix = '', duration = 1800) {
+      let start = 0;
+      const step = target / (duration / 16);
+      const timer = setInterval(() => {
+        start += step;
+        if (start >= target) { start = target; clearInterval(timer); }
+        el.textContent = Math.floor(start) + suffix;
+      }, 16);
+    }
+
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => animateCounter(document.getElementById('counter1'), 12400, '+'), 800);
+          setTimeout(() => animateCounter(document.getElementById('counter2'), 85, '+'), 1000);
+          setTimeout(() => animateCounter(document.getElementById('counter3'), 24, ''), 1200);
+          heroObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) heroObserver.observe(heroSection);
+
+    // ── STAGGER DELAYS for team cards ──
+    document.querySelectorAll('.team-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.15}s`;
+    });
+
+    // ── NAVBAR SHRINK on scroll ──
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.padding = window.scrollY > 60 ? '0.9rem 3rem' : '1.4rem 3rem';
+      nav.style.transition = 'padding 0.3s ease';
+    });
+  </script>
+
+</body>
+</html>

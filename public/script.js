@@ -5,7 +5,7 @@ const careerDetails = {
   developer: {
     title: "Web Developer",
     category: "Technology",
-    description: "Build websites and web applications used worldwide.",
+    description: "Build websites and web applications used worldwide. \n A web developer is a technical professional responsible for creating, coding, and maintaining websites and web applications to ensure they are functional, user-friendly, and visually appealing.",
     skills: ["HTML", "CSS", "JavaScript", "React", "Node.js"],
     path: [
       "Learn HTML & CSS",
