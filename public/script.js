@@ -391,7 +391,7 @@ if (token && welcomeText) {
   // video dashboard
 
   const video = document.getElementById('myVideo');
-  const pauseBtn = document.getElementById('palyPauseBtn');
+  const pauseBtn = document.getElementById('playPauseBtn');
   const muteBtn = document.getElementById("muteBtn");
 
   pauseBtn.addEventListener('click',()=>{
@@ -613,3 +613,6 @@ document.getElementById("userInput").addEventListener("keypress", function(e) {
     sendMessage();
   }
 });
+
+
+// con

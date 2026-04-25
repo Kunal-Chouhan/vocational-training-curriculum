@@ -288,7 +288,7 @@ body {
   display: block;
 }
 
-#palyPauseBtn, #muteBtn {
+#playPauseBtn, #muteBtn {
   position: absolute;
   bottom: 1.4rem;
   border: none;
@@ -303,9 +303,9 @@ body {
   z-index: 10;
 }
 
-#palyPauseBtn { right: 10rem; }
+#playPauseBtn { right: 10rem; }
 #muteBtn      { right: 14.5rem; }
-#palyPauseBtn:hover, #muteBtn:hover { background: rgba(59,130,246,0.7); }
+#playPauseBtn:hover, #muteBtn:hover { background: rgba(59,130,246,0.7); }
 
 /* ── RECOMMEND BUTTONS ── */
 .recomendBtn {
