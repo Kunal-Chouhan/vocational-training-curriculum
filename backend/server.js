@@ -6,7 +6,11 @@ require('dotenv').config();
 
 const knowledgeBase  =require('./knowledge.json')
 
+
 const app = express();
+
+app.use(express.static("public"));
+
 app.use(express.json());
 app.use(cors());
 

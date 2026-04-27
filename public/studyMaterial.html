@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Material Hub – SkillBridge</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ============================================================
+       study-material.html — Additive styles only
+       All base variables, navbar, heading-secondary, card-btn,
+       para, res-card, section etc. come from style.css
+    ============================================================ */
+
+    /* ---- Page wrapper ---------------------------------------- */
+    .sm-page {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+    }
+
+    /* ---- Hero ------------------------------------------------- */
+    .sm-hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #0f4c75 100%);
+      color: white;
+      padding: 5rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .sm-hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 55%;
+      height: 220%;
+      background: radial-gradient(circle, rgba(79,70,229,0.18) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+    }
+    .sm-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .sm-hero .badge {
+      margin-bottom: 1.8rem;
+      width: auto;
+      display: inline-flex;
+      padding: 0.4rem 1.6rem;
+    }
+    .sm-hero h1 {
+      font-size: 4.8rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      line-height: 1.15;
+    }
+    .sm-hero p {
+      font-size: 1.8rem;
+      color: #94a3b8;
+      max-width: 70rem;
+      margin-bottom: 0;
+    }
+
+    /* ---- Search bar ------------------------------------------ */
+    .sm-search-section {
+      background: #ffffff;
+      padding: 3rem 4rem;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .sm-search-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sm-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #f1f5f9;
+      border: 2px solid #e2e8f0;
+      border-radius: 1.2rem;
+      padding: 0.6rem 1.8rem;
+      transition: border-color 0.2s;
+      max-width: 70rem;
+    }
+    .sm-search-bar:focus-within {
+      border-color: #4f46e5;
+      background: #fff;
+    }
+    .sm-search-bar i {
+      color: #94a3b8;
+      font-size: 1.8rem;
+    }
+    .sm-search-bar input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 1.6rem;
+      color: #0f172a;
+      padding: 0.8rem 0;
+      width: auto;
+      height: auto;
+    }
+    .sm-search-bar input::placeholder { color: #94a3b8; }
+
+    .sm-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.6rem;
+    }
+    .sm-chip {
+      background: #e8f0fe;
+      color: #4338ca;
+      border: 1px solid #c7d7fd;
+      border-radius: 999px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .sm-chip:hover,
+    .sm-chip.active {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+    }
+
+    /* ---- Section layout --------------------------------------- */
+    .sm-section {
+      padding: 5rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sm-section-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .sm-section-sub {
+      font-size: 1.5rem;
+      color: #64748b;
+      margin-bottom: 3rem;
+    }
+
+    /* ---- Subject category header ------------------------------ */
+    .sm-category-wrap {
+      background: #ffffff;
+      border-radius: 1.6rem;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .sm-category-header {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      padding: 2rem 2.4rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .sm-category-header:hover { background: #f8fafc; }
+    .sm-cat-icon {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      flex-shrink: 0;
+    }
+    .cat-blue   { background: #e8f0fe; }
+    .cat-green  { background: #ecfdf5; }
+    .cat-orange { background: #fff7ed; }
+    .cat-purple { background: #f3e8fd; }
+    .cat-red    { background: #fef2f2; }
+
+    .sm-category-header h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      flex: 1;
+      color: #0f172a;
+    }
+    .sm-category-header .sm-count {
+      font-size: 1.3rem;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+    }
+    .sm-toggle-icon {
+      color: #94a3b8;
+      font-size: 1.6rem;
+      transition: transform 0.3s;
+    }
+    .sm-category-wrap.open .sm-toggle-icon { transform: rotate(180deg); }
+
+    .sm-resource-grid {
+      display: none;
+      grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
+      gap: 2rem;
+      padding: 0 2.4rem 2.4rem;
+    }
+    .sm-category-wrap.open .sm-resource-grid { display: grid; }
+
+    /* ---- Resource card --------------------------------------- */
+    .sm-res-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 1.2rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all 0.25s;
+    }
+    .sm-res-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(79,70,229,0.1);
+      border-color: #c7d7fd;
+    }
+    .sm-res-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .sm-file-icon {
+      width: 4.2rem;
+      height: 4.2rem;
+      border-radius: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    .fi-pdf   { background: #fef2f2; color: #ef4444; }
+    .fi-doc   { background: #e8f0fe; color: #2563eb; }
+    .fi-sheet { background: #ecfdf5; color: #10b981; }
+    .fi-guide { background: #fff7ed; color: #f97316; }
+
+    .sm-res-card h4 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.3;
+      margin: 0;
+    }
+    .sm-res-card p {
+      font-size: 1.3rem;
+      color: #64748b;
+      line-height: 1.5;
+      margin: 0;
+      flex: 1;
+    }
+    .sm-res-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.2rem;
+      color: #94a3b8;
+    }
+    .sm-res-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+    /* reuse card-btn from style.css but make a smaller variant */
+    .sm-dl-btn {
+      background-image: linear-gradient(to right, #4b6cb7 0%, #182848 51%, #4b6cb7 100%);
+      background-size: 200% auto;
+      color: white;
+      border: none;
+      border-radius: 0.8rem;
+      padding: 0.9rem 1.6rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: background-position 0.4s, transform 0.2s;
+      width: 100%;
+      justify-content: center;
+      margin-top: 0.4rem;
+    }
+    .sm-dl-btn:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+    }
+
+    /* ---- Popular Downloads & Quick Revision strips ------------ */
+    .sm-strip-section {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 5rem 4rem;
+    }
+    .sm-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sm-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+      gap: 2rem;
+    }
+    .sm-strip-card {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 1.2rem;
+      padding: 1.6rem 2rem;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .sm-strip-card:hover {
+      border-color: #4f46e5;
+      box-shadow: 0 4px 16px rgba(79,70,229,0.1);
+      transform: translateY(-3px);
+    }
+    .sm-strip-emoji { font-size: 3rem; flex-shrink: 0; }
+    .sm-strip-text h4 { font-size: 1.5rem; font-weight: 700; color: #0f172a; margin: 0 0 0.3rem; }
+    .sm-strip-text p  { font-size: 1.3rem; color: #64748b; margin: 0; }
+    .sm-strip-card .sm-arrow {
+      margin-left: auto;
+      color: #4f46e5;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- Quick Revision (colored accent) ---------------------- */
+    .sm-qr-card {
+      border-radius: 1.2rem;
+      padding: 2rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .sm-qr-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.2); }
+    .sm-qr-card .qr-tag {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+    }
+    .sm-qr-card h4 { font-size: 1.7rem; font-weight: 700; margin: 0; }
+    .sm-qr-card p  { font-size: 1.3rem; opacity: 0.85; margin: 0; }
+    .sm-qr-card .qr-btn {
+      margin-top: 0.8rem;
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: white;
+      border-radius: 0.6rem;
+      padding: 0.7rem 1.4rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: fit-content;
+      transition: background 0.2s;
+    }
+    .sm-qr-card .qr-btn:hover { background: rgba(255,255,255,0.4); }
+
+    .qr-blue   { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+    .qr-teal   { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+    .qr-orange { background: linear-gradient(135deg, #f97316, #ea580c); }
+    .qr-violet { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+
+    /* ---- Footer (matches style.css .footer) ------------------- */
+    .sm-footer {
+      background-color: rgb(3, 3, 37);
+      color: #F1EFEC;
+      padding: 5rem 8rem;
+    }
+    .sm-footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+    .sm-footer-brand { }
+    .sm-footer-brand .footer-logo { font-size: 2.4rem; font-weight: 800; color: #fff; }
+    .sm-footer-brand p { font-size: 1.4rem; color: #9f9f9f; line-height: 1.8; margin-top: 1rem; }
+    .sm-footer-col h4 { font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 1.6rem; }
+    .sm-footer-col ul { list-style: none; }
+    .sm-footer-col ul li { font-size: 1.4rem; color: #9f9f9f; line-height: 2.6; cursor: pointer; }
+    .sm-footer-col ul li:hover { color: #fff; }
+    .sm-footer-bottom {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #9f9f9f;
+      margin-top: 4rem;
+      padding-top: 2.4rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ---- Hidden resource card (for search filter) ------------- */
+    .sm-res-card.hidden { display: none; }
+
+    /* ---- No results msg --------------------------------------- */
+    .sm-no-results {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 1.6rem;
+      padding: 4rem 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sm-page">
+
+  <!-- ===================== NAVBAR (reuses style.css) ===================== -->
+  <header class="header">
+    <div class="navbar">
+      <a href="index.html" class="logo">
+        <img src="/img/header-logo.svg" alt="SkillBridge" width="100" height="65">
+      </a>
+      <ul class="nav-links">
+        <a href="dashboard.html" onclick="showSection('program')"><li class="nav-para">Programs</li></a>
+        <a href=""><li class="nav-para">Career Tracks</li></a>
+        <a href="#benefits"><li class="nav-para">Benefits</li></a>
+        <a href="AboutUs.html"><li class="nav-para">About Us</li></a>
+        <a href="resource.html"><li class="nav-para">Resources</li></a>
+      </ul>
+      <div class="authentication">
+        <a id="loginID" class="login" href="login.html">Log in</a>
+        <a id="signupID" href="signup.html"><button class="Signup-btn">Get Started</button></a>
+        <button id="logoutBtn" style="display:none;">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="sm-hero">
+    <div class="sm-hero-inner">
+      <div class="badge">📘 Learning Resource Hub</div>
+      <h1>Study Material Hub</h1>
+      <p>Access notes, PDFs, cheat sheets, and important learning resources for career growth — all in one place.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SEARCH BAR ===================== -->
+  <div class="sm-search-section">
+    <div class="sm-search-inner">
+      <div class="sm-search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="smSearch" placeholder="Search topics — HTML, Python, SQL, DBMS, Aptitude…">
+      </div>
+      <div class="sm-chips">
+        <span class="sm-chip active" data-filter="all">All</span>
+        <span class="sm-chip" data-filter="html">HTML</span>
+        <span class="sm-chip" data-filter="css">CSS</span>
+        <span class="sm-chip" data-filter="javascript">JavaScript</span>
+        <span class="sm-chip" data-filter="python">Python</span>
+        <span class="sm-chip" data-filter="sql">SQL</span>
+        <span class="sm-chip" data-filter="dbms">DBMS</span>
+        <span class="sm-chip" data-filter="aptitude">Aptitude</span>
+        <span class="sm-chip" data-filter="interview">Interview Prep</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN RESOURCE SECTIONS ===================== -->
+  <main>
+    <div class="sm-section">
+      <h2 class="sm-section-title">📂 Subject-wise Resources</h2>
+      <p class="sm-section-sub">Click a category to expand and access all materials inside.</p>
+
+      <!-- ---- A. Web Development ---- -->
+      <div class="sm-category-wrap open" id="cat-webdev">
+        <div class="sm-category-header" onclick="toggleCat('cat-webdev')">
+          <div class="sm-cat-icon cat-blue">🌐</div>
+          <h3>Web Development</h3>
+          <span class="sm-count">4 resources</span>
+          <i class="fa-solid fa-chevron-down sm-toggle-icon"></i>
+        </div>
+        <div class="sm-resource-grid">
+
+          <div class="sm-res-card" data-tags="html web">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-pdf"><i class="fa-solid fa-file-pdf"></i></div>
+              <h4>HTML Notes PDF</h4>
+            </div>
+            <p>Complete HTML5 reference with semantic tags, forms, tables, and accessibility best practices.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 2.4 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.8</span>
+            </div>
+            <a href="pdf/Class Notes (1).pdf" target="_blank"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="css web">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-doc"><i class="fa-solid fa-file-lines"></i></div>
+              <h4>CSS Notes PDF</h4>
+            </div>
+            <p>Covers Flexbox, Grid, animations, media queries, and CSS variables with visual examples.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 3.1 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.7</span>
+            </div>
+            <a href="pdf/CSS Notes.pdf"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="javascript web">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-sheet"><i class="fa-solid fa-file-code"></i></div>
+              <h4>JavaScript Cheat Sheet</h4>
+            </div>
+            <p>ES6+, DOM manipulation, async/await, closures, and interview-ready JS snippets.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 1.8 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.9</span>
+            </div>
+            <a href="pdf/JS_Chapterwise_Notes.pdf"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="react web javascript">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-guide"><i class="fa-brands fa-react"></i></div>
+              <h4>React Quick Guide</h4>
+            </div>
+            <p>Hooks, state management, component patterns, and React best practices for beginners.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 2.9 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.6</span>
+            </div>
+            <a href="https://archive.codewithharry.com/tutorial/react-home/"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ---- B. Programming ---- -->
+      <div class="sm-category-wrap" id="cat-prog">
+        <div class="sm-category-header" onclick="toggleCat('cat-prog')">
+          <div class="sm-cat-icon cat-green">💻</div>
+          <h3>Programming</h3>
+          <span class="sm-count">4 resources</span>
+          <i class="fa-solid fa-chevron-down sm-toggle-icon"></i>
+        </div>
+        <div class="sm-resource-grid">
+
+          <div class="sm-res-card" data-tags="cpp programming">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-pdf"><i class="fa-solid fa-file-pdf"></i></div>
+              <h4>C++ Notes</h4>
+            </div>
+            <p>Core concepts, STL, pointers, and OOP in C++ — from beginner to competitive level.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 4.2 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.7</span>
+            </div>
+            <a href="https://archive.codewithharry.com/blogpost/cpp-cheatsheet/"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="python programming">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-doc"><i class="fa-brands fa-python"></i></div>
+              <h4>Python Beginner Guide</h4>
+            </div>
+            <p>Variables, loops, functions, OOP, file handling, and libraries — all explained simply.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 3.6 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.8</span>
+            </div>
+            <a href="pdf/python.pdf"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="dsa programming interview">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-sheet"><i class="fa-solid fa-sitemap"></i></div>
+              <h4>DSA Revision Sheet</h4>
+            </div>
+            <p>Arrays, Linked Lists, Trees, Graphs, DP — quick revision before placements.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 2.1 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.9</span>
+            </div>
+            <a href="pdf/dsanotes.pdf"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="oop programming">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-guide"><i class="fa-solid fa-cubes"></i></div>
+              <h4>OOP Concepts</h4>
+            </div>
+            <p>Encapsulation, Inheritance, Polymorphism, Abstraction with code examples.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 1.5 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.6</span>
+            </div>
+            <a href="pdf/oop.pdf"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ---- C. Database ---- -->
+      <div class="sm-category-wrap" id="cat-db">
+        <div class="sm-category-header" onclick="toggleCat('cat-db')">
+          <div class="sm-cat-icon cat-orange">🗄️</div>
+          <h3>Database</h3>
+          <span class="sm-count">3 resources</span>
+          <i class="fa-solid fa-chevron-down sm-toggle-icon"></i>
+        </div>
+        <div class="sm-resource-grid">
+
+          <div class="sm-res-card" data-tags="dbms database">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-pdf"><i class="fa-solid fa-file-pdf"></i></div>
+              <h4>DBMS Notes</h4>
+            </div>
+            <p>ER diagrams, normalization, transactions, ACID properties — complete DBMS theory.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 5.2 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.8</span>
+            </div>
+            <a href="pdf/DBMS.pdf"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="sql database interview">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-sheet"><i class="fa-solid fa-table"></i></div>
+              <h4>SQL Cheat Sheet</h4>
+            </div>
+            <p>SELECT, JOIN, GROUP BY, subqueries, window functions — all SQL commands at a glance.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 1.9 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.9</span>
+            </div>
+            <a href="https://archive.codewithharry.com/blogpost/mysql-cheatsheet/"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="mongodb database nosql">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-guide"><i class="fa-solid fa-leaf"></i></div>
+              <h4>MongoDB Basics</h4>
+            </div>
+            <p>Collections, documents, CRUD, aggregation pipeline — NoSQL introduction guide.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 2.4 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.5</span>
+            </div>
+            <a href="pdf/m"></a><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ---- D. Aptitude Preparation ---- -->
+      <div class="sm-category-wrap" id="cat-apt">
+        <div class="sm-category-header" onclick="toggleCat('cat-apt')">
+          <div class="sm-cat-icon cat-purple">🧮</div>
+          <h3>Aptitude Preparation</h3>
+          <span class="sm-count">3 resources</span>
+          <i class="fa-solid fa-chevron-down sm-toggle-icon"></i>
+        </div>
+        <div class="sm-resource-grid">
+
+          <div class="sm-res-card" data-tags="aptitude quantitative">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-pdf"><i class="fa-solid fa-file-pdf"></i></div>
+              <h4>Quantitative Aptitude PDF</h4>
+            </div>
+            <p>Percentage, profit/loss, time-speed-distance, averages, and number system shortcuts.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 6.4 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.7</span>
+            </div>
+            <a href="pdf/aptitude.pdf"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="aptitude logical reasoning">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-doc"><i class="fa-solid fa-brain"></i></div>
+              <h4>Logical Reasoning Notes</h4>
+            </div>
+            <p>Syllogisms, blood relations, coding-decoding, and seating arrangement with practice sets.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 4.1 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.6</span>
+            </div>
+            <a href="pdf/logical-reasoning-af06f6b8.pdf"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="aptitude placement mcq interview">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-sheet"><i class="fa-solid fa-list-check"></i></div>
+              <h4>Placement MCQs</h4>
+            </div>
+            <p>500+ placement-ready MCQs covering quant, reasoning, verbal ability, and GK.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 3.8 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.8</span>
+            </div>
+            <a href="https://www.geeksforgeeks.org/interview-prep/tcs-nqt-preparation-guide-2026-videos-mcqs-questions-bank/"></a><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ---- E. Interview Preparation ---- -->
+      <div class="sm-category-wrap" id="cat-interview">
+        <div class="sm-category-header" onclick="toggleCat('cat-interview')">
+          <div class="sm-cat-icon cat-red">🎯</div>
+          <h3>Interview Preparation</h3>
+          <span class="sm-count">3 resources</span>
+          <i class="fa-solid fa-chevron-down sm-toggle-icon"></i>
+        </div>
+        <div class="sm-resource-grid">
+
+          <div class="sm-res-card" data-tags="interview hr">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-pdf"><i class="fa-solid fa-user-tie"></i></div>
+              <h4>HR Interview Questions</h4>
+            </div>
+            <p>Top 50 HR questions with smart sample answers — tell me about yourself, strengths, weaknesses.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 1.3 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.9</span>
+            </div>
+            <a href="https://youtu.be/zIm_k9j0C50?si=8zT34uWFpQxZElTu"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="interview technical programming dsa">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-doc"><i class="fa-solid fa-laptop-code"></i></div>
+              <h4>Technical Interview Questions</h4>
+            </div>
+            <p>OS, CN, DBMS, OOP, DSA — most asked technical interview questions from top companies.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 3.5 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.8</span>
+            </div>
+            <a href="https://www.geeksforgeeks.org/interview-prep/os-cn-dbms-interview-questions/"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+          <div class="sm-res-card" data-tags="interview communication tips">
+            <div class="sm-res-card-top">
+              <div class="sm-file-icon fi-guide"><i class="fa-solid fa-comments"></i></div>
+              <h4>Communication Tips</h4>
+            </div>
+            <p>Body language, clarity, confidence tips, and how to structure answers using the STAR method.</p>
+            <div class="sm-res-meta">
+              <span><i class="fa-solid fa-file"></i> PDF</span>
+              <span><i class="fa-solid fa-weight-hanging"></i> 0.9 MB</span>
+              <span><i class="fa-solid fa-star" style="color:#f59e0b"></i> 4.7</span>
+            </div>
+            <a href="https://youtu.be/DHCCyiuhjUQ?si=CEZJ0w0wWywkGp6F"><button class="sm-dl-btn"><i class="fa-solid fa-download"></i> Download / View</button></a>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="sm-no-results" id="noResults">😕 No resources found. Try a different search term.</p>
+    </div>
+
+    <!-- ===================== POPULAR DOWNLOADS ===================== -->
+    <div class="sm-strip-section">
+      <div class="sm-strip-inner">
+        <h2 class="sm-section-title">🔥 Popular Downloads</h2>
+        <p class="sm-section-sub">Highly downloaded materials loved by thousands of students.</p>
+        <div class="sm-strip-grid">
+
+          <div class="sm-strip-card">
+            <span class="sm-strip-emoji">📄</span>
+            <div class="sm-strip-text">
+              <h4>Resume Template</h4>
+              <p>ATS-friendly, freshers edition</p>
+            </div>
+            <a href="pdf/FirstName_LastName_Resume (2).docx"></a><i class="fa-solid fa-arrow-down sm-arrow"></i>
+          </div>
+
+          <div class="sm-strip-card">
+            <span class="sm-strip-emoji">🗺️</span>
+            <div class="sm-strip-text">
+              <h4>Web Dev Roadmap</h4>
+              <p>2024 full-stack learning path</p>
+            </div>
+            <i class="fa-solid fa-arrow-down sm-arrow"></i>
+          </div>
+
+          <div class="sm-strip-card">
+            <span class="sm-strip-emoji">🛢️</span>
+            <div class="sm-strip-text">
+              <h4>SQL Interview Questions</h4>
+              <p>Top 80 asked in FAANG</p>
+            </div>
+            <i class="fa-solid fa-arrow-down sm-arrow"></i>
+          </div>
+
+          <div class="sm-strip-card">
+            <span class="sm-strip-emoji">⚡</span>
+            <div class="sm-strip-text">
+              <h4>Aptitude Quick Revision</h4>
+              <p>Last-minute placement prep</p>
+            </div>
+            <i class="fa-solid fa-arrow-down sm-arrow"></i>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== QUICK REVISION ===================== -->
+    <div class="sm-section">
+      <h2 class="sm-section-title">⚡ Quick Revision</h2>
+      <p class="sm-section-sub">Rapid one-shot notes designed for last-minute prep before placements or exams.</p>
+      <div class="sm-strip-grid">
+
+        <div class="sm-qr-card qr-blue">
+          <span class="qr-tag">📘 One-Shot</span>
+          <h4>DBMS One-shot Notes</h4>
+          <p>Complete DBMS theory compressed into 12 pages — perfect for exam eve revision.</p>
+          <a href="pdf/DBMS.pdf"><button class="qr-btn"><i class="fa-solid fa-bolt"></i> Quick Access</button></a>
+        </div>
+
+        <div class="sm-qr-card qr-teal">
+          <span class="qr-tag">⚙️ JavaScript</span>
+          <h4>JS Interview Revision</h4>
+          <p>Top 40 JS interview concepts: hoisting, closures, promises, event loop and more.</p>
+          <a href="pdf/JavaScript Interview Questions .pdf"><button class="qr-btn"><i class="fa-solid fa-bolt"></i> Quick Access</button></a>
+        </div>
+
+        <div class="sm-qr-card qr-orange">
+          <span class="qr-tag">🛢️ SQL</span>
+          <h4>SQL Top Questions</h4>
+          <p>Most frequently asked SQL queries in interviews — from basics to window functions.</p>
+          <a href="pdf/sql-interview-questions-1.pdf"><button class="qr-btn"><i class="fa-solid fa-bolt"></i> Quick Access</button></a>
+        </div>
+
+        <div class="sm-qr-card qr-violet">
+          <span class="qr-tag">🎯 Placement</span>
+          <h4>Placement Prep Sheet</h4>
+          <p>Resume tips, aptitude tricks, HR Q&A, and coding prep bundled in one sheet.</p>
+          <a href="https://www.geeksforgeeks.org/interview-prep/os-cn-dbms-interview-questions/"></a><button class="qr-btn"><i class="fa-solid fa-bolt"></i> Quick Access</button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+   <!-- footer section -->
+
+    <section class="footer">
+      <div class="container">
+        <div class="about">
+          <a class="footer-heading" href="AboutUs.html"><h4>About</h4></a>
+          <p class="foot-about">Transforming education by integrating <br>vocational training into K-12 curriculum,<br> preparing students for successful careers.</p>
+        </div>
+
+        <div class="about">
+          <a class="footer-heading" href="dashboard.html"><h4 >Programs</h4></a>
+          <p class="foot-p">
+            <ul class="foot-list">
+              <li>Elementry</li>
+              <li>Middle School</li>
+              <li>High School</li>
+              <li>Career Tracks</li>
+            </ul>
+          </p>
+        </div>
+
+        <div class="about">
+          <a class="footer-heading" href="Resource.html"><h4>Resources</h4></a>
+          <p class="foot-p">
+            <ul class="foot-list">
+              <li>Implementation Guide</li>
+              <li>Case Studies</li>
+              <li>Partner Portal</li>
+              <li>FAQs</li>
+            </ul>
+          </p>
+        </div>
+
+        <div class="about email">
+          <h4 class="footer-heading">Connect Us</h4>
+          <a href="mailto:kunalchouhan037@gmail.com" class="foot-p">kunalchouhan037@gmail.com</a><br>
+          <a href="mailto:kunalchouhan037@gmail.com" class="foot-p">kunalchouhan037@gmail.com</a><br>
+          <a href="mailto:kunalchouhan037@gmail.com" class="foot-p">kunalchouhan037@gmail.com</a><br>
+          <a href="mailto:kunalchouhan037@gmail.com" class="foot-p">kunalchouhan037@gmail.com</a>
+          <div class="contact-logos">
+            <a href="https://www.linkedin.com/in/kunalchouhan" target="_blank"><img src="/img/linkedin.png" alt="" height="40" width="40"></a>
+            <a href="https://github.com/Kunal-Chouhan" target="_blank"><img src="/img/github.png" alt="" height="40" width="40"></a>
+            <a href="https://mail.google.com/mail/?view=cm&to=kunalchouhan037@gmail.com" ><img src="/img/gmail.png" alt="" height="40" width="40"></a>
+          </div>
+        </div>
+        
+      </div>
+      <p class="copyright">© 2026 Vocational Education Integration Initiative. All rights reserved.</p>
+    </section>
+
+
+</div>
+<!-- /.sm-page -->
+
+<script>
+  /* ---- Category toggle ---- */
+  function toggleCat(id) {
+    const wrap = document.getElementById(id);
+    wrap.classList.toggle('open');
+  }
+
+  /* ---- Chip filter ---- */
+  const chips = document.querySelectorAll('.sm-chip');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+      filterResources(filter);
+      // Also clear text search
+      document.getElementById('smSearch').value = '';
+    });
+  });
+
+  /* ---- Text search ---- */
+  document.getElementById('smSearch').addEventListener('input', function () {
+    const query = this.value.toLowerCase().trim();
+    chips.forEach(c => c.classList.remove('active'));
+    document.querySelector('[data-filter="all"]').classList.add('active');
+    filterResources(query === '' ? 'all' : query, true);
+  });
+
+  function filterResources(filter, isText = false) {
+    const cards = document.querySelectorAll('.sm-res-card');
+    let anyVisible = false;
+
+    // Open all categories during search
+    document.querySelectorAll('.sm-category-wrap').forEach(w => {
+      if (filter !== 'all') w.classList.add('open');
+    });
+
+    cards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      const title = card.querySelector('h4').textContent.toLowerCase();
+      const desc  = card.querySelector('p').textContent.toLowerCase();
+
+      let match = false;
+      if (filter === 'all') {
+        match = true;
+      } else if (isText) {
+        match = title.includes(filter) || desc.includes(filter) || tags.includes(filter);
+      } else {
+        match = tags.includes(filter);
+      }
+
+      card.classList.toggle('hidden', !match);
+      if (match) anyVisible = true;
+    });
+
+    document.getElementById('noResults').style.display = anyVisible ? 'none' : 'block';
+  }
+</script>
+
+</body>
+</html>
