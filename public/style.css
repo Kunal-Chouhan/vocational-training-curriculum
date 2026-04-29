@@ -1618,3 +1618,24 @@ input:focus {
   margin-bottom: 1.5rem;
   flex: 1;
 }
+
+/* video tutorial */
+
+.resource-page {
+      padding: 4rem 6rem;
+      background: #f4f8fc;
+      min-height: 100vh;
+    }
+.resource-header{
+  text-align: center;
+}
+
+.tuto-card{
+  padding: 2rem;
+    background: linear-gradient(to right, #eef2f3, #dfe9f3);
+}
+
+.video-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
