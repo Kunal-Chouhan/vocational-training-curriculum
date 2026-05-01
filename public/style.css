@@ -15,6 +15,11 @@ body{
 .header{
   height: auto;
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+    background-color: white !important;
+
 }
 .navbar{
   display: flex;
@@ -123,7 +128,6 @@ a{
   gap: 1.2rem;
   margin: 0rem 30rem;
   line-height: 3;
-
 }
 
 .heading-primary{
