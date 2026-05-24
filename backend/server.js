@@ -17,7 +17,7 @@ app.use(cors());
 // new
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/vocationalDB')
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("✅ MongoDB connected"))
 .catch(err => console.log(err));
 
@@ -63,12 +63,13 @@ app.post('/api/login', async (req, res) => {
     if (!isMatch) return res.json({ error: "Invalid password" });
 
     const token = jwt.sign(
-      { userId: user._id,
-        name: user.name
-       },
-      "SECRET_KEY",
-      { expiresIn: "1d" }
-    );
+  { 
+    userId: user._id,
+    name: user.name
+  },
+  process.env.JWT_SECRET,
+  { expiresIn: "1d" }
+);
 
     res.json({ message: "Login success", token });
   } catch (err) {
@@ -84,7 +85,10 @@ function authMiddleware(req, res, next) {
   }
 
   try {
-    const decoded = jwt.verify(token, "SECRET_KEY");
+const decoded = jwt.verify(
+  token,
+  process.env.JWT_SECRET
+);
     req.user = decoded;
     next(); // continue to next function
   } catch (err) {
@@ -290,4 +294,4 @@ app.post('/api/chat', authMiddleware, async (req, res) => {
 });
 
 
-app.listen(5000, () => console.log("Agent running on http://localhost:5000"));
+app.listen(process.env.PORT, () => console.log("Agent running on http://localhost:5000"));
