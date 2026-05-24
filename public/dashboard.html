@@ -39,10 +39,10 @@
     </a>
     <ul class="nav-links">
       <a href="dashboard.html" onclick="showSection('program')"><li class="nav-para">Programs</li></a>
-      <a href=""><li class="nav-para">Career Tracks</li></a>
-      <a href=""><li class="nav-para">Benefits</li></a>
+      <a href="studyMaterial.html"><li class="nav-para">Study Material</li></a>
+      <a href="index.html"><li class="nav-para">Benefits</li></a>
       <a href="AboutUs.html"><li class="nav-para">About Us</li></a>
-      <a href=""><li class="nav-para">Resources</li></a>
+      <a href="resource.html"><li class="nav-para">Resources</li></a>
     </ul>
     <div class="authentication">
     <a id="loginID" class="login" href="login.html">Log in</a>
@@ -328,8 +328,893 @@
       </div>
       
       <div id="careerSection" style="display:none;" class="forBtnshow">
-        <h3>Career Guide</h3>
-        <h1>Coming soon!</h1>
+          <!-- ── PAGE HERO ── -->
+  <div class="cg-hero">
+    <div class="cg-hero-left">
+      <span class="cg-hero-badge">Career Guidance Platform</span>
+      <h1 class="cg-hero-title">Find Your<br><span class="cg-hero-accent">Dream Career</span></h1>
+      <p class="cg-hero-sub">Explore 25+ career paths, salary insights, roadmaps, and certifications — all in one place.</p>
+      <div class="cg-hero-btns">
+        <button class="cg-primary-btn" onclick="scrollToQuiz()">🎯 Take Career Quiz</button>
+        <button class="cg-ghost-btn" onclick="scrollToCategories()">Browse Careers ↓</button>
+      </div>
+    </div>
+    <div class="cg-hero-stats">
+      <div class="cg-hero-stat"><span class="cg-stat-num">25+</span><span class="cg-stat-label">Career Paths</span></div>
+      <div class="cg-hero-stat"><span class="cg-stat-num">6</span><span class="cg-stat-label">Industries</span></div>
+      <div class="cg-hero-stat"><span class="cg-stat-num">₹40L+</span><span class="cg-stat-label">Max Salary</span></div>
+      <div class="cg-hero-stat"><span class="cg-stat-num">10+</span><span class="cg-stat-label">Certifications</span></div>
+    </div>
+  </div>
+ 
+  <!-- ── INDUSTRY TRENDS ── -->
+  <div class="cg-section" id="cg-trends">
+    <div class="cg-section-header">
+      <span class="cg-tag">📈 2026 Outlook</span>
+      <h2 class="cg-section-title">Top Careers in 2026</h2>
+      <p class="cg-section-sub">The most in-demand roles shaping the future of work</p>
+    </div>
+    <div class="cg-trends-grid">
+      <div class="cg-trend-card hot">
+        <div class="cg-trend-icon">🤖</div>
+        <div class="cg-trend-info">
+          <strong>AI Engineer</strong>
+          <span>Fastest Growing</span>
+        </div>
+        <div class="cg-trend-badge hot-badge">🔥 Hot</div>
+      </div>
+      <div class="cg-trend-card hot">
+        <div class="cg-trend-icon">☁️</div>
+        <div class="cg-trend-info">
+          <strong>Cloud Engineer</strong>
+          <span>High Demand</span>
+        </div>
+        <div class="cg-trend-badge hot-badge">🔥 Hot</div>
+      </div>
+      <div class="cg-trend-card rising">
+        <div class="cg-trend-icon">🔐</div>
+        <div class="cg-trend-info">
+          <strong>Cybersecurity</strong>
+          <span>Critical Need</span>
+        </div>
+        <div class="cg-trend-badge rise-badge">📈 Rising</div>
+      </div>
+      <div class="cg-trend-card hot">
+        <div class="cg-trend-icon">🧠</div>
+        <div class="cg-trend-info">
+          <strong>Data Science</strong>
+          <span>Very High Demand</span>
+        </div>
+        <div class="cg-trend-badge hot-badge">🔥 Hot</div>
+      </div>
+      <div class="cg-trend-card rising">
+        <div class="cg-trend-icon">✨</div>
+        <div class="cg-trend-info">
+          <strong>Prompt Engineering</strong>
+          <span>Emerging Field</span>
+        </div>
+        <div class="cg-trend-badge rise-badge">📈 Rising</div>
+      </div>
+      <div class="cg-trend-card rising">
+        <div class="cg-trend-icon">🎯</div>
+        <div class="cg-trend-info">
+          <strong>Product Management</strong>
+          <span>Leadership Role</span>
+        </div>
+        <div class="cg-trend-badge rise-badge">📈 Rising</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ── CAREER CATEGORIES ── -->
+  <div class="cg-section" id="cg-categories">
+    <div class="cg-section-header">
+      <span class="cg-tag">🗂️ Explore by Industry</span>
+      <h2 class="cg-section-title">Career Categories</h2>
+      <p class="cg-section-sub">Click any category to explore careers within it</p>
+    </div>
+ 
+    <!-- Category Filter Tabs -->
+    <div class="cg-tabs" id="cgTabs">
+      <button class="cg-tab active" onclick="filterCategory('all', this)">All Careers</button>
+      <button class="cg-tab" onclick="filterCategory('tech', this)">💻 Technology</button>
+      <button class="cg-tab" onclick="filterCategory('business', this)">📊 Business</button>
+      <button class="cg-tab" onclick="filterCategory('health', this)">🏥 Healthcare</button>
+      <button class="cg-tab" onclick="filterCategory('creative', this)">🎨 Creative</button>
+      <button class="cg-tab" onclick="filterCategory('govt', this)">🏛️ Government</button>
+    </div>
+ 
+    <!-- Career Cards Grid -->
+    <div class="cg-careers-grid" id="cgCareersGrid">
+ 
+      <!-- TECHNOLOGY -->
+      <div class="cg-career-card" data-cat="tech">
+        <div class="cg-card-top tech-grad">
+          <span class="cg-card-emoji">💻</span>
+          <span class="cg-card-industry">Technology</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Web Developer</h3>
+          <p>Build websites and web apps. Work with HTML, CSS, JavaScript, and modern frameworks.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹4L – ₹20L</span>
+            <span class="cg-demand-pill high">High Demand</span>
+          </div>
+          <button class="card-btn" onclick="openCareerDetails('developer')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="tech">
+        <div class="cg-card-top teal-grad">
+          <span class="cg-card-emoji">🧠</span>
+          <span class="cg-card-industry">Technology</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Data Scientist</h3>
+          <p>Analyze complex datasets, build ML models, and guide business strategy with data.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹6L – ₹30L</span>
+            <span class="cg-demand-pill high">Very High</span>
+          </div>
+          <button class="card-btn btnChange3" onclick="openCareerDetails('dataScientist')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="tech">
+        <div class="cg-card-top amber-grad">
+          <span class="cg-card-emoji">🤖</span>
+          <span class="cg-card-industry">Technology</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>AI Engineer</h3>
+          <p>Design and deploy AI systems, train neural networks, and build intelligent applications.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹8L – ₹40L</span>
+            <span class="cg-demand-pill hot">🔥 Hottest</span>
+          </div>
+          <button class="card-btn btnChange2" onclick="openCareerDetails('aiTech')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="tech">
+        <div class="cg-card-top pink-grad">
+          <span class="cg-card-emoji">✨</span>
+          <span class="cg-card-industry">Technology</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>UI/UX Designer</h3>
+          <p>Create intuitive interfaces and beautiful user experiences for web and mobile products.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹4L – ₹18L</span>
+            <span class="cg-demand-pill high">High Demand</span>
+          </div>
+          <button class="card-btn btnChange1" onclick="openCareerDetails('promptUX')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="tech">
+        <div class="cg-card-top rose-grad">
+          <span class="cg-card-emoji">🔐</span>
+          <span class="cg-card-industry">Technology</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Cybersecurity Analyst</h3>
+          <p>Protect systems from hackers. Conduct penetration testing and build secure infrastructure.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹5L – ₹25L</span>
+            <span class="cg-demand-pill hot">🔥 Rising</span>
+          </div>
+          <button class="card-btn btnChange2" onclick="cgComingSoon('Cybersecurity Analyst')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <!-- BUSINESS -->
+      <div class="cg-career-card" data-cat="business">
+        <div class="cg-card-top purple-grad">
+          <span class="cg-card-emoji">📊</span>
+          <span class="cg-card-industry">Business</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Business Intelligence Analyst</h3>
+          <p>Transform raw data into actionable insights and interactive dashboards for leadership.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹5L – ₹20L</span>
+            <span class="cg-demand-pill high">High Demand</span>
+          </div>
+          <button class="card-btn btnChange1" onclick="openCareerDetails('bi')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="business">
+        <div class="cg-card-top amber-grad">
+          <span class="cg-card-emoji">📱</span>
+          <span class="cg-card-industry">Business</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Digital Marketing</h3>
+          <p>Run campaigns on Google, Instagram, and YouTube. Master SEO, ads, and analytics.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹3L – ₹12L</span>
+            <span class="cg-demand-pill medium">Moderate</span>
+          </div>
+          <button class="card-btn btnChange2" onclick="cgComingSoon('Digital Marketing')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="business">
+        <div class="cg-card-top teal-grad">
+          <span class="cg-card-emoji">💰</span>
+          <span class="cg-card-industry">Business</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Finance Executive</h3>
+          <p>Manage budgets, investments, financial planning and reporting for organizations.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹5L – ₹22L</span>
+            <span class="cg-demand-pill high">Stable</span>
+          </div>
+          <button class="card-btn btnChange3" onclick="cgComingSoon('Finance Executive')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="business">
+        <div class="cg-card-top tech-grad">
+          <span class="cg-card-emoji">🤝</span>
+          <span class="cg-card-industry">Business</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>HR Manager</h3>
+          <p>Recruit talent, build company culture, manage employee relations and development.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹4L – ₹15L</span>
+            <span class="cg-demand-pill medium">Steady</span>
+          </div>
+          <button class="card-btn" onclick="cgComingSoon('HR Manager')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <!-- HEALTHCARE -->
+      <div class="cg-career-card" data-cat="health">
+        <div class="cg-card-top teal-grad">
+          <span class="cg-card-emoji">💉</span>
+          <span class="cg-card-industry">Healthcare</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Nurse</h3>
+          <p>Provide patient care in hospitals and clinics. A noble, high-impact healthcare career.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹3L – ₹12L</span>
+            <span class="cg-demand-pill high">Always Needed</span>
+          </div>
+          <button class="card-btn btnChange3" onclick="cgComingSoon('Nurse')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="health">
+        <div class="cg-card-top amber-grad">
+          <span class="cg-card-emoji">💊</span>
+          <span class="cg-card-industry">Healthcare</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Pharmacist</h3>
+          <p>Dispense medications, advise patients, and ensure safe drug use across hospitals and retail.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹3L – ₹10L</span>
+            <span class="cg-demand-pill medium">Stable</span>
+          </div>
+          <button class="card-btn btnChange2" onclick="cgComingSoon('Pharmacist')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="health">
+        <div class="cg-card-top purple-grad">
+          <span class="cg-card-emoji">🔬</span>
+          <span class="cg-card-industry">Healthcare</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Lab Technician</h3>
+          <p>Conduct diagnostic tests, operate lab equipment, and assist in medical research.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹2.5L – ₹8L</span>
+            <span class="cg-demand-pill medium">Moderate</span>
+          </div>
+          <button class="card-btn btnChange1" onclick="cgComingSoon('Lab Technician')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="health">
+        <div class="cg-card-top rose-grad">
+          <span class="cg-card-emoji">🐾</span>
+          <span class="cg-card-industry">Healthcare</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Veterinary Doctor</h3>
+          <p>Heal and protect animals. Work in clinics, zoos, farms, or wildlife conservation.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹3L – ₹15L</span>
+            <span class="cg-demand-pill medium">Rewarding</span>
+          </div>
+          <button class="card-btn btnChange2" onclick="openCareerDetails('vetDoctor')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <!-- CREATIVE -->
+      <div class="cg-career-card" data-cat="creative">
+        <div class="cg-card-top pink-grad">
+          <span class="cg-card-emoji">🎨</span>
+          <span class="cg-card-industry">Creative</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Graphic Designer</h3>
+          <p>Create visual identities, marketing materials, and digital art for brands and agencies.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹3L – ₹12L</span>
+            <span class="cg-demand-pill high">High Demand</span>
+          </div>
+          <button class="card-btn btnChange1" onclick="cgComingSoon('Graphic Designer')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="creative">
+        <div class="cg-card-top rose-grad">
+          <span class="cg-card-emoji">🎬</span>
+          <span class="cg-card-industry">Creative</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Video Editor</h3>
+          <p>Edit videos for YouTube, films, ads, and social media. Master Premiere Pro and After Effects.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹3L – ₹15L</span>
+            <span class="cg-demand-pill hot">🔥 Booming</span>
+          </div>
+          <button class="card-btn btnChange2" onclick="cgComingSoon('Video Editor')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="creative">
+        <div class="cg-card-top amber-grad">
+          <span class="cg-card-emoji">✍️</span>
+          <span class="cg-card-industry">Creative</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Content Creator</h3>
+          <p>Build audiences on YouTube, Instagram, or a blog. Monetize through brand deals and courses.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹2L – ₹Unlimited</span>
+            <span class="cg-demand-pill hot">🔥 Rising</span>
+          </div>
+          <button class="card-btn btnChange2" onclick="cgComingSoon('Content Creator')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="creative">
+        <div class="cg-card-top purple-grad">
+          <span class="cg-card-emoji">🎞️</span>
+          <span class="cg-card-industry">Creative</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Animator</h3>
+          <p>Bring characters and stories to life using 2D/3D animation tools for films, games, and ads.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹3L – ₹18L</span>
+            <span class="cg-demand-pill medium">Growing</span>
+          </div>
+          <button class="card-btn btnChange1" onclick="cgComingSoon('Animator')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <!-- GOVERNMENT -->
+      <div class="cg-career-card" data-cat="govt">
+        <div class="cg-card-top teal-grad">
+          <span class="cg-card-emoji">🏛️</span>
+          <span class="cg-card-industry">Government</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>SSC (Combined Graduate)</h3>
+          <p>Work in central government ministries. Exam-based entry with job security and benefits.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹3L – ₹9L</span>
+            <span class="cg-demand-pill medium">Stable</span>
+          </div>
+          <button class="card-btn btnChange3" onclick="cgComingSoon('SSC')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="govt">
+        <div class="cg-card-top tech-grad">
+          <span class="cg-card-emoji">🏦</span>
+          <span class="cg-card-industry">Government</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Banking (IBPS/SBI)</h3>
+          <p>Join nationalized banks as PO or Clerk. Strong salary, perks, and career growth.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹4L – ₹12L</span>
+            <span class="cg-demand-pill high">High Security</span>
+          </div>
+          <button class="card-btn" onclick="cgComingSoon('Banking')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="govt">
+        <div class="cg-card-top amber-grad">
+          <span class="cg-card-emoji">📜</span>
+          <span class="cg-card-industry">Government</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>UPSC (IAS/IPS/IFS)</h3>
+          <p>The most prestigious civil service exam. Lead districts, policies, and national services.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹6L – ₹18L</span>
+            <span class="cg-demand-pill high">Prestigious</span>
+          </div>
+          <button class="card-btn btnChange2" onclick="cgComingSoon('UPSC')">Explore Path</button>
+        </div>
+      </div>
+ 
+      <div class="cg-career-card" data-cat="govt">
+        <div class="cg-card-top purple-grad">
+          <span class="cg-card-emoji">🚂</span>
+          <span class="cg-card-industry">Government</span>
+        </div>
+        <div class="cg-card-body">
+          <h3>Railways (RRB)</h3>
+          <p>Join Indian Railways as technician, loco pilot, or group-D employee. All-India hiring.</p>
+          <div class="cg-card-meta">
+            <span class="cg-salary-pill">₹2.5L – ₹8L</span>
+            <span class="cg-demand-pill medium">Stable</span>
+          </div>
+          <button class="card-btn btnChange1" onclick="cgComingSoon('Railways')">Explore Path</button>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- ── CAREER ROADMAP ── -->
+  <div class="cg-section" id="cg-roadmap">
+    <div class="cg-section-header">
+      <span class="cg-tag">🗺️ Your Journey</span>
+      <h2 class="cg-section-title">Universal Career Roadmap</h2>
+      <p class="cg-section-sub">Follow these 6 steps for any career you choose</p>
+    </div>
+    <div class="cg-roadmap">
+      <div class="cg-road-step">
+        <div class="cg-road-num" style="background: #3b82f6;">1</div>
+        <div class="cg-road-connector"></div>
+        <div class="cg-road-card">
+          <div class="cg-road-icon">⚡</div>
+          <h3>Learn Core Skills</h3>
+          <p>Identify the 5–7 must-have skills for your chosen career and begin structured learning through courses, YouTube, or books.</p>
+          <div class="cg-road-tags">
+            <span>Online Courses</span><span>YouTube</span><span>Books</span>
+          </div>
+        </div>
+      </div>
+      <div class="cg-road-step">
+        <div class="cg-road-num" style="background: #8b5cf6;">2</div>
+        <div class="cg-road-connector"></div>
+        <div class="cg-road-card">
+          <div class="cg-road-icon">🏗️</div>
+          <h3>Build Real Projects</h3>
+          <p>Apply your knowledge by building 3–5 portfolio projects. Real projects beat certificates in every job interview.</p>
+          <div class="cg-road-tags">
+            <span>GitHub</span><span>Portfolio</span><span>Personal Projects</span>
+          </div>
+        </div>
+      </div>
+      <div class="cg-road-step">
+        <div class="cg-road-num" style="background: #06b6d4;">3</div>
+        <div class="cg-road-connector"></div>
+        <div class="cg-road-card">
+          <div class="cg-road-icon">📜</div>
+          <h3>Get Certified</h3>
+          <p>Earn industry-recognized certifications to validate your skills. Google, AWS, and Microsoft certs carry real weight.</p>
+          <div class="cg-road-tags">
+            <span>Google</span><span>AWS</span><span>Coursera</span>
+          </div>
+        </div>
+      </div>
+      <div class="cg-road-step">
+        <div class="cg-road-num" style="background: #10b981;">4</div>
+        <div class="cg-road-connector"></div>
+        <div class="cg-road-card">
+          <div class="cg-road-icon">🏢</div>
+          <h3>Land an Internship</h3>
+          <p>Apply to 20–30 internships. Even unpaid internships give you real experience and a foot in the door.</p>
+          <div class="cg-road-tags">
+            <span>LinkedIn</span><span>Internshala</span><span>AngelList</span>
+          </div>
+        </div>
+      </div>
+      <div class="cg-road-step">
+        <div class="cg-road-num" style="background: #f59e0b;">5</div>
+        <div class="cg-road-connector"></div>
+        <div class="cg-road-card">
+          <div class="cg-road-icon">📄</div>
+          <h3>Polish Resume & Profile</h3>
+          <p>Write a clean 1-page ATS-friendly resume. Set up LinkedIn with a professional photo and strong headline.</p>
+          <div class="cg-road-tags">
+            <span>Resume</span><span>LinkedIn</span><span>GitHub Profile</span>
+          </div>
+        </div>
+      </div>
+      <div class="cg-road-step last">
+        <div class="cg-road-num" style="background: #f43f5e;">6</div>
+        <div class="cg-road-card">
+          <div class="cg-road-icon">🚀</div>
+          <h3>Apply & Ace Interviews</h3>
+          <p>Apply to 50+ jobs consistently. Prepare for technical and HR rounds. Negotiate your offer confidently.</p>
+          <div class="cg-road-tags">
+            <span>Naukri</span><span>LinkedIn Jobs</span><span>Mock Interviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ── SALARY INSIGHTS ── -->
+  <div class="cg-section cg-dark-section" id="cg-salary">
+    <div class="cg-section-header">
+      <span class="cg-tag light-tag">💰 Market Data 2026</span>
+      <h2 class="cg-section-title light-title">Fresher Salary Insights</h2>
+      <p class="cg-section-sub light-sub">Average annual packages for fresh graduates in India</p>
+    </div>
+    <div class="cg-salary-grid">
+      <div class="cg-sal-card">
+        <div class="cg-sal-role">
+          <span class="cg-sal-emoji">💻</span>
+          <div>
+            <strong>Web Developer</strong>
+            <span>Frontend / Full Stack</span>
+          </div>
+        </div>
+        <div class="cg-sal-bar-wrap">
+          <div class="cg-sal-bar" style="width: 65%; background: #3b82f6;"></div>
+        </div>
+        <div class="cg-sal-range">
+          <span class="sal-low">₹4L</span>
+          <span class="sal-high">₹10L / yr</span>
+        </div>
+      </div>
+      <div class="cg-sal-card">
+        <div class="cg-sal-role">
+          <span class="cg-sal-emoji">🧠</span>
+          <div>
+            <strong>Data Scientist</strong>
+            <span>ML / Analytics</span>
+          </div>
+        </div>
+        <div class="cg-sal-bar-wrap">
+          <div class="cg-sal-bar" style="width: 80%; background: #06b6d4;"></div>
+        </div>
+        <div class="cg-sal-range">
+          <span class="sal-low">₹6L</span>
+          <span class="sal-high">₹15L / yr</span>
+        </div>
+      </div>
+      <div class="cg-sal-card">
+        <div class="cg-sal-role">
+          <span class="cg-sal-emoji">🤖</span>
+          <div>
+            <strong>AI / ML Engineer</strong>
+            <span>Artificial Intelligence</span>
+          </div>
+        </div>
+        <div class="cg-sal-bar-wrap">
+          <div class="cg-sal-bar" style="width: 90%; background: #f59e0b;"></div>
+        </div>
+        <div class="cg-sal-range">
+          <span class="sal-low">₹8L</span>
+          <span class="sal-high">₹22L / yr</span>
+        </div>
+      </div>
+      <div class="cg-sal-card">
+        <div class="cg-sal-role">
+          <span class="cg-sal-emoji">📊</span>
+          <div>
+            <strong>Business Analyst</strong>
+            <span>BI / Strategy</span>
+          </div>
+        </div>
+        <div class="cg-sal-bar-wrap">
+          <div class="cg-sal-bar" style="width: 60%; background: #8b5cf6;"></div>
+        </div>
+        <div class="cg-sal-range">
+          <span class="sal-low">₹5L</span>
+          <span class="sal-high">₹12L / yr</span>
+        </div>
+      </div>
+      <div class="cg-sal-card">
+        <div class="cg-sal-role">
+          <span class="cg-sal-emoji">✨</span>
+          <div>
+            <strong>UI/UX Designer</strong>
+            <span>Product Design</span>
+          </div>
+        </div>
+        <div class="cg-sal-bar-wrap">
+          <div class="cg-sal-bar" style="width: 55%; background: #ec4899;"></div>
+        </div>
+        <div class="cg-sal-range">
+          <span class="sal-low">₹4L</span>
+          <span class="sal-high">₹8L / yr</span>
+        </div>
+      </div>
+      <div class="cg-sal-card">
+        <div class="cg-sal-role">
+          <span class="cg-sal-emoji">📱</span>
+          <div>
+            <strong>Digital Marketing</strong>
+            <span>SEO / Ads / Social</span>
+          </div>
+        </div>
+        <div class="cg-sal-bar-wrap">
+          <div class="cg-sal-bar" style="width: 45%; background: #10b981;"></div>
+        </div>
+        <div class="cg-sal-range">
+          <span class="sal-low">₹3L</span>
+          <span class="sal-high">₹7L / yr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ── CERTIFICATIONS ── -->
+  <div class="cg-section" id="cg-certs">
+    <div class="cg-section-header">
+      <span class="cg-tag">🏆 Industry Recognized</span>
+      <h2 class="cg-section-title">Recommended Certifications</h2>
+      <p class="cg-section-sub">Certifications that hiring managers actually respect</p>
+    </div>
+    <div class="cg-cert-grid">
+      <div class="cg-cert-card">
+        <div class="cg-cert-logo google">G</div>
+        <div class="cg-cert-info">
+          <strong>Google Data Analytics</strong>
+          <span>Coursera · 6 months</span>
+          <div class="cg-cert-tags"><span>Free Audit</span><span>Beginner</span></div>
+        </div>
+        <a href="https://coursera.org" target="_blank" class="cg-cert-link">Get →</a>
+      </div>
+      <div class="cg-cert-card">
+        <div class="cg-cert-logo aws">AWS</div>
+        <div class="cg-cert-info">
+          <strong>AWS Cloud Practitioner</strong>
+          <span>Amazon · Self-paced</span>
+          <div class="cg-cert-tags"><span>Paid</span><span>Industry Standard</span></div>
+        </div>
+        <a href="https://aws.amazon.com/certification" target="_blank" class="cg-cert-link">Get →</a>
+      </div>
+      <div class="cg-cert-card">
+        <div class="cg-cert-logo azure">Az</div>
+        <div class="cg-cert-info">
+          <strong>Microsoft Azure AZ-900</strong>
+          <span>Microsoft · 2–4 weeks</span>
+          <div class="cg-cert-tags"><span>Free Resources</span><span>Cloud</span></div>
+        </div>
+        <a href="https://learn.microsoft.com/certifications" target="_blank" class="cg-cert-link">Get →</a>
+      </div>
+      <div class="cg-cert-card">
+        <div class="cg-cert-logo meta">M</div>
+        <div class="cg-cert-info">
+          <strong>Meta Frontend Developer</strong>
+          <span>Coursera · 7 months</span>
+          <div class="cg-cert-tags"><span>Free Audit</span><span>React</span></div>
+        </div>
+        <a href="https://coursera.org" target="_blank" class="cg-cert-link">Get →</a>
+      </div>
+      <div class="cg-cert-card">
+        <div class="cg-cert-logo ibm">IBM</div>
+        <div class="cg-cert-info">
+          <strong>IBM Data Science</strong>
+          <span>Coursera · 10 months</span>
+          <div class="cg-cert-tags"><span>Free Audit</span><span>Python + ML</span></div>
+        </div>
+        <a href="https://coursera.org" target="_blank" class="cg-cert-link">Get →</a>
+      </div>
+      <div class="cg-cert-card">
+        <div class="cg-cert-logo coursera">C+</div>
+        <div class="cg-cert-info">
+          <strong>Coursera Career Certificates</strong>
+          <span>Multiple paths</span>
+          <div class="cg-cert-tags"><span>Many Options</span><span>Job-Ready</span></div>
+        </div>
+        <a href="https://coursera.org/professional-certificates" target="_blank" class="cg-cert-link">Get →</a>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ── SKILLS SHOWCASE ── -->
+  <div class="cg-section" id="cg-skills">
+    <div class="cg-section-header">
+      <span class="cg-tag">⚡ What You Need</span>
+      <h2 class="cg-section-title">Required Skills by Career</h2>
+      <p class="cg-section-sub">Key technical and soft skills for top careers</p>
+    </div>
+    <div class="cg-skills-grid">
+      <div class="cg-skills-panel" style="--accent-col: #3b82f6;">
+        <div class="cg-skills-head">
+          <span class="cg-sk-emoji">💻</span>
+          <h3>Web Developer</h3>
+        </div>
+        <div class="skills-tags">
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">REST APIs</span>
+        </div>
+      </div>
+      <div class="cg-skills-panel" style="--accent-col: #06b6d4;">
+        <div class="cg-skills-head">
+          <span class="cg-sk-emoji">🧠</span>
+          <h3>Data Scientist</h3>
+        </div>
+        <div class="skills-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Machine Learning</span>
+          <span class="skill-tag">Statistics</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Pandas</span>
+        </div>
+      </div>
+      <div class="cg-skills-panel" style="--accent-col: #f59e0b;">
+        <div class="cg-skills-head">
+          <span class="cg-sk-emoji">🤖</span>
+          <h3>AI Engineer</h3>
+        </div>
+        <div class="skills-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">LLMs</span>
+          <span class="skill-tag">MLOps</span>
+          <span class="skill-tag">Cloud</span>
+        </div>
+      </div>
+      <div class="cg-skills-panel" style="--accent-col: #ec4899;">
+        <div class="cg-skills-head">
+          <span class="cg-sk-emoji">✨</span>
+          <h3>UI/UX Designer</h3>
+        </div>
+        <div class="skills-tags">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">User Research</span>
+          <span class="skill-tag">Wireframing</span>
+          <span class="skill-tag">Prototyping</span>
+          <span class="skill-tag">Design Systems</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ── RESUME TIPS ── -->
+  <div class="cg-section" id="cg-resume">
+    <div class="cg-section-header">
+      <span class="cg-tag">📄 Get Hired</span>
+      <h2 class="cg-section-title">Resume, Portfolio & Interview</h2>
+      <p class="cg-section-sub">Practical tips to land your first job faster</p>
+    </div>
+    <div class="cg-tips-grid">
+      <div class="cg-tip-card">
+        <div class="cg-tip-icon" style="background: rgba(59,130,246,0.1); color: #3b82f6;">📄</div>
+        <h3>Resume Building</h3>
+        <ul class="cg-tip-list">
+          <li>Keep it to 1 page — recruiters spend 6 seconds</li>
+          <li>Use ATS-friendly templates (no tables/columns)</li>
+          <li>Quantify achievements: "Increased speed by 40%"</li>
+          <li>Use action verbs: Built, Designed, Improved</li>
+          <li>Tailor resume for every job posting</li>
+        </ul>
+      </div>
+      <div class="cg-tip-card">
+        <div class="cg-tip-icon" style="background: rgba(16,185,129,0.1); color: #10b981;">🐙</div>
+        <h3>GitHub Profile</h3>
+        <ul class="cg-tip-list">
+          <li>Pin your 4–6 best projects</li>
+          <li>Write clear README for every project</li>
+          <li>Maintain a green contribution graph</li>
+          <li>Deploy projects live (Vercel/Netlify)</li>
+          <li>Contribute to open source</li>
+        </ul>
+      </div>
+      <div class="cg-tip-card">
+        <div class="cg-tip-icon" style="background: rgba(6,182,212,0.1); color: #06b6d4;">💼</div>
+        <h3>LinkedIn Profile</h3>
+        <ul class="cg-tip-list">
+          <li>Professional headshot (increases views 14x)</li>
+          <li>Write a strong headline with keywords</li>
+          <li>Post content weekly to grow visibility</li>
+          <li>Connect with 500+ people in your field</li>
+          <li>Turn on "Open to Work" privately</li>
+        </ul>
+      </div>
+      <div class="cg-tip-card">
+        <div class="cg-tip-icon" style="background: rgba(245,158,11,0.1); color: #f59e0b;">🎤</div>
+        <h3>Interview Prep</h3>
+        <ul class="cg-tip-list">
+          <li>Practice 50 DSA problems on LeetCode</li>
+          <li>Use STAR method for behavioral questions</li>
+          <li>Research the company deeply before interview</li>
+          <li>Prepare 3 strong project walkthroughs</li>
+          <li>Do 5+ mock interviews with friends</li>
+        </ul>
+      </div>
+      <div class="cg-tip-card">
+        <div class="cg-tip-icon" style="background: rgba(139,92,246,0.1); color: #8b5cf6;">🏢</div>
+        <h3>Internship Prep</h3>
+        <ul class="cg-tip-list">
+          <li>Apply early — start 3 months before semester</li>
+          <li>Use Internshala, LinkedIn, AngelList</li>
+          <li>Cold email founders at startups (it works!)</li>
+          <li>Have a 60-second elevator pitch ready</li>
+          <li>Follow up within 48 hours after interview</li>
+        </ul>
+      </div>
+      <div class="cg-tip-card">
+        <div class="cg-tip-icon" style="background: rgba(244,63,94,0.1); color: #f43f5e;">🌐</div>
+        <h3>Portfolio Website</h3>
+        <ul class="cg-tip-list">
+          <li>Build a personal website — it sets you apart</li>
+          <li>Include About, Projects, Skills, Contact</li>
+          <li>Show live demos, not just screenshots</li>
+          <li>Get a custom domain (₹700/year)</li>
+          <li>Add a testimonials section if possible</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ── CAREER QUIZ ── -->
+  <div class="cg-section" id="cg-quiz">
+    <div class="cg-quiz-wrapper">
+      <div class="cg-quiz-left">
+        <span class="cg-tag">🎯 Discover Yourself</span>
+        <h2 class="cg-section-title">Not sure which career fits you?</h2>
+        <p>Answer 6 quick questions and get a personalized career recommendation based on your interests, strengths, and working style.</p>
+        <div class="cg-quiz-features">
+          <div class="cg-quiz-feat"><span>✅</span> Takes only 2 minutes</div>
+          <div class="cg-quiz-feat"><span>✅</span> Based on real career data</div>
+          <div class="cg-quiz-feat"><span>✅</span> Get 3 matched career paths</div>
+          <div class="cg-quiz-feat"><span>✅</span> Linked to Explore Path</div>
+        </div>
+        <button class="cg-primary-btn" onclick="startCareerQuiz()">🎯 Start Career Quiz</button>
+      </div>
+      <div class="cg-quiz-preview" id="cgQuizArea">
+        <!-- Quiz State: Preview -->
+        <div id="cgQuizPreview" class="cg-quiz-card-preview">
+          <div class="cg-quiz-icon">🧭</div>
+          <h3>Career Compass</h3>
+          <p>A few questions to find your perfect career match</p>
+          <div class="cg-quiz-sample-q">
+            <span>Sample question:</span>
+            <strong>"Do you enjoy solving logical problems?"</strong>
+          </div>
+          <button class="cg-ghost-btn" onclick="startCareerQuiz()">Begin Quiz →</button>
+        </div>
+        <!-- Quiz State: Active (hidden by default) -->
+        <div id="cgQuizActive" style="display:none;" class="cg-quiz-active">
+          <div class="cg-quiz-progress">
+            <span id="cgQuizStep">Question 1 of 6</span>
+            <div class="cg-quiz-progress-bar"><div id="cgQuizFill" style="width:16%;"></div></div>
+          </div>
+          <div id="cgQuizQuestion" class="cg-quiz-q-text"></div>
+          <div id="cgQuizOptions" class="cg-quiz-options"></div>
+        </div>
+        <!-- Quiz State: Result (hidden by default) -->
+        <div id="cgQuizResult" style="display:none;" class="cg-quiz-result-card">
+          <div class="cg-result-icon">🎉</div>
+          <h3>Your Best Matches!</h3>
+          <div id="cgResultCareers" class="cg-result-careers"></div>
+          <button class="cg-ghost-btn" onclick="resetCareerQuiz()">Retake Quiz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
       </div>
 
       

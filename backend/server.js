@@ -71,7 +71,6 @@ app.post('/api/login', async (req, res) => {
     );
 
     res.json({ message: "Login success", token });
-
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

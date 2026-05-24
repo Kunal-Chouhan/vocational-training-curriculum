@@ -630,3 +630,298 @@
       if (e.key === "Enter") sendMessage();
     });
   }
+
+
+
+
+  /* ═══════════════════════════════════════════════
+   CAREER GUIDE JS — append to claude.js
+═══════════════════════════════════════════════ */
+
+/* ── Smooth scroll helpers ── */
+function scrollToQuiz() {
+  document.getElementById('cg-quiz')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function scrollToCategories() {
+  document.getElementById('cg-categories')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ── Category Filter ── */
+function filterCategory(cat, btn) {
+  // Update active tab
+  document.querySelectorAll('.cg-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Show/hide cards
+  document.querySelectorAll('.cg-career-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.classList.remove('hidden');
+      card.style.animation = 'none';
+      requestAnimationFrame(() => {
+        card.style.animation = 'fadeInUp 0.35s ease both';
+      });
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+/* ── Coming Soon Toast for unlinked careers ── */
+function cgComingSoon(name) {
+  // Remove existing toast if present
+  const existing = document.getElementById('cgToast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'cgToast';
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    z-index: 9999;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 1.4rem 2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.35rem;
+    color: var(--text);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    animation: slideInToast 0.3s ease both;
+    max-width: 32rem;
+  `;
+  toast.innerHTML = `
+    <strong style="display:block;margin-bottom:4px;color:var(--accent);">Coming Soon 🚀</strong>
+    Full guide for <em>${name}</em> is being built. Check back soon!
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3500);
+}
+
+/* ── Career Quiz Logic ── */
+const quizQuestions = [
+  {
+    q: "Do you enjoy writing code and building software?",
+    options: [
+      { text: "Yes, I love it!", scores: { tech: 3 } },
+      { text: "A little bit", scores: { tech: 1, business: 1 } },
+      { text: "Not really", scores: { creative: 1, health: 1 } },
+      { text: "I prefer other things", scores: { govt: 1, health: 1 } }
+    ]
+  },
+  {
+    q: "How do you feel about working with data and numbers?",
+    options: [
+      { text: "I love patterns and analysis!", scores: { tech: 2, business: 2 } },
+      { text: "I'm okay with it", scores: { business: 1, tech: 1 } },
+      { text: "I prefer people over spreadsheets", scores: { health: 2, creative: 1 } },
+      { text: "Numbers stress me out", scores: { creative: 2, govt: 1 } }
+    ]
+  },
+  {
+    q: "Which environment would you thrive in?",
+    options: [
+      { text: "Fast-paced startup or tech company", scores: { tech: 3 } },
+      { text: "Corporate office with clear structure", scores: { business: 2, govt: 1 } },
+      { text: "Hospital, clinic, or outdoor setting", scores: { health: 3 } },
+      { text: "Creative studio or freelance work", scores: { creative: 3 } }
+    ]
+  },
+  {
+    q: "What motivates you most at work?",
+    options: [
+      { text: "Solving difficult technical problems", scores: { tech: 3 } },
+      { text: "Helping people directly", scores: { health: 3 } },
+      { text: "Building something beautiful", scores: { creative: 3 } },
+      { text: "Stability, security, and impact", scores: { govt: 3, business: 1 } }
+    ]
+  },
+  {
+    q: "Are you comfortable learning continuously?",
+    options: [
+      { text: "Yes — tech changes fast and I love it", scores: { tech: 2 } },
+      { text: "Yes, through structured courses and exams", scores: { govt: 2, health: 1 } },
+      { text: "I prefer mastering one skill deeply", scores: { creative: 2, business: 1 } },
+      { text: "I learn on the job", scores: { business: 2, health: 1 } }
+    ]
+  },
+  {
+    q: "Where do you see yourself in 5 years?",
+    options: [
+      { text: "Building products used by millions", scores: { tech: 3 } },
+      { text: "Leading a team or running my own business", scores: { business: 3 } },
+      { text: "Making a real difference in people's health", scores: { health: 3 } },
+      { text: "Creating work that people love and admire", scores: { creative: 3 } }
+    ]
+  }
+];
+
+const quizCareerMap = {
+  tech: [
+    { name: "Web Developer", key: "developer" },
+    { name: "Data Scientist", key: "dataScientist" },
+    { name: "AI Engineer", key: "aiTech" },
+    { name: "UI/UX Designer", key: "promptUX" }
+  ],
+  business: [
+    { name: "Business Intelligence Analyst", key: "bi" },
+    { name: "Product Data Analyst", key: "productAnalyst" },
+    { name: "Digital Marketing Specialist", key: null },
+    { name: "Finance Executive", key: null }
+  ],
+  health: [
+    { name: "Veterinary Doctor", key: "vetDoctor" },
+    { name: "Nurse / Healthcare Worker", key: null },
+    { name: "Lab Technician", key: null }
+  ],
+  creative: [
+    { name: "Graphic Designer", key: null },
+    { name: "Video Editor", key: null },
+    { name: "Content Creator", key: null },
+    { name: "Prompt Engineer & UX Designer", key: "promptUX" }
+  ],
+  govt: [
+    { name: "UPSC Civil Services", key: null },
+    { name: "Banking (IBPS/SBI PO)", key: null },
+    { name: "SSC Graduate Level", key: null }
+  ]
+};
+
+let quizScores = { tech: 0, business: 0, health: 0, creative: 0, govt: 0 };
+let quizCurrentStep = 0;
+
+function startCareerQuiz() {
+  quizScores = { tech: 0, business: 0, health: 0, creative: 0, govt: 0 };
+  quizCurrentStep = 0;
+  document.getElementById('cgQuizPreview').style.display = 'none';
+  document.getElementById('cgQuizResult').style.display = 'none';
+  document.getElementById('cgQuizActive').style.display = 'block';
+  renderQuizQuestion();
+  document.getElementById('cg-quiz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function renderQuizQuestion() {
+  const q = quizQuestions[quizCurrentStep];
+  const stepEl = document.getElementById('cgQuizStep');
+  const fillEl = document.getElementById('cgQuizFill');
+  const qEl = document.getElementById('cgQuizQuestion');
+  const optsEl = document.getElementById('cgQuizOptions');
+
+  const pct = Math.round(((quizCurrentStep + 1) / quizQuestions.length) * 100);
+  stepEl.textContent = `Question ${quizCurrentStep + 1} of ${quizQuestions.length}`;
+  fillEl.style.width = pct + '%';
+  qEl.textContent = q.q;
+
+  optsEl.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'cg-quiz-opt';
+    btn.textContent = opt.text;
+    btn.onclick = () => selectQuizAnswer(opt.scores);
+    optsEl.appendChild(btn);
+  });
+}
+
+function selectQuizAnswer(scores) {
+  // Add scores
+  Object.entries(scores).forEach(([cat, val]) => {
+    quizScores[cat] = (quizScores[cat] || 0) + val;
+  });
+
+  quizCurrentStep++;
+
+  if (quizCurrentStep >= quizQuestions.length) {
+    showQuizResult();
+  } else {
+    renderQuizQuestion();
+  }
+}
+
+function showQuizResult() {
+  document.getElementById('cgQuizActive').style.display = 'none';
+  document.getElementById('cgQuizResult').style.display = 'block';
+
+  // Sort categories by score
+  const sorted = Object.entries(quizScores)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3);
+
+  const container = document.getElementById('cgResultCareers');
+  container.innerHTML = '';
+
+  const matchPct = [92, 78, 61];
+
+  sorted.forEach(([cat, score], idx) => {
+    const careers = quizCareerMap[cat] || [];
+    const top = careers[0];
+    if (!top) return;
+
+    const item = document.createElement('div');
+    item.className = 'cg-result-item';
+    item.innerHTML = `
+      <div>
+        <strong>${top.name}</strong>
+        <div style="font-size:1.15rem;color:var(--muted);margin-top:3px;">${cat.charAt(0).toUpperCase() + cat.slice(1)} · ${score} match points</div>
+      </div>
+      <span class="cg-result-match">${matchPct[idx]}% match</span>
+    `;
+    container.appendChild(item);
+
+    // Add explore button if path exists
+    if (top.key) {
+      const btn = document.createElement('button');
+      btn.className = 'cg-ghost-btn';
+      btn.style.cssText = 'width:100%;margin-top:0.6rem;font-size:1.2rem;padding:0.9rem 1.4rem;';
+      btn.textContent = `Explore ${top.name} Path →`;
+      btn.onclick = () => openCareerDetails(top.key);
+      container.appendChild(btn);
+    }
+  });
+}
+
+function resetCareerQuiz() {
+  document.getElementById('cgQuizResult').style.display = 'none';
+  document.getElementById('cgQuizPreview').style.display = 'block';
+}
+
+/* ── Salary bar animation on scroll ── */
+(function() {
+  const salBars = document.querySelectorAll('.cg-sal-bar');
+  if (!salBars.length) return;
+
+  // Store original widths and reset
+  salBars.forEach(bar => {
+    bar._targetWidth = bar.style.width;
+    bar.style.width = '0%';
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.cg-sal-bar').forEach(bar => {
+          bar.style.width = bar._targetWidth;
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const salSection = document.getElementById('cg-salary');
+  if (salSection) observer.observe(salSection);
+})();
+
+/* ── Toast slide-in animation (inject once) ── */
+(function injectToastStyle() {
+  if (document.getElementById('cgToastStyle')) return;
+  const s = document.createElement('style');
+  s.id = 'cgToastStyle';
+  s.textContent = `
+    @keyframes slideInToast {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  `;
+  document.head.appendChild(s);
+})();
