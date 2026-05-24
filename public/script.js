@@ -190,7 +190,7 @@ async function signup() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   
-  const res = await fetch('http://localhost:5000/api/signup', {
+  const res = await fetch('https://vocational-training-curriculum.onrender.com/api/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -215,7 +215,7 @@ async function login() {
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
   console.log("helo")
-  const res = await fetch('http://localhost:5000/api/login', {
+  const res = await fetch('https://vocational-training-curriculum.onrender.com/api/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -588,7 +588,7 @@ document.addEventListener("DOMContentLoaded", () => {
   input.value = "";
 
   // Fetch from backend
-  const res = await fetch('http://localhost:5000/api/chat', {
+  const res = await fetch('https://vocational-training-curriculum.onrender.com/api/chat', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
