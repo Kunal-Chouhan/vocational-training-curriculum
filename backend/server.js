@@ -2,6 +2,7 @@ const express = require('express');
 const Groq = require('groq-sdk');
 const fs = require('fs');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const knowledgeBase  =require('./knowledge.json')
@@ -9,7 +10,7 @@ const knowledgeBase  =require('./knowledge.json')
 
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../public")));
 
 app.use(express.json());
 app.use(cors());
